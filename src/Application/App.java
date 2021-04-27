@@ -8,8 +8,9 @@ import Echiquier.Plateau;
  */
 public class App {
     public static void main(String[] args) {
-        System.out.println("wassup bitch \nhi bitch\n");
+        System.out.println("wassup bitch");
         Plateau pl = new Plateau();
         System.out.println(pl);
+        System.out.println("bye bitch");
     }
 }

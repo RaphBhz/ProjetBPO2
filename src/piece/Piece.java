@@ -1,6 +1,8 @@
 package piece;
 
-public abstract class Piece {
+import Echec.IPiece;
+
+public abstract class Piece implements IPiece {
     private int colonne, ligne;
 
     public Piece(int colonne, int ligne) {
@@ -8,6 +10,7 @@ public abstract class Piece {
         this.ligne = ligne;
     }
 
+    @Override
     public boolean isPieceInCoords(int colonne, int ligne) {
         return this.colonne == colonne && this.ligne == ligne;
     }
@@ -20,11 +23,14 @@ public abstract class Piece {
         return colonne;
     }
 
+    @Override
     public abstract boolean peutAllerEn(int colonne, int ligne);
 
+    @Override
     public boolean craintEchec() {
         return false;
     }
-
+    
+    @Override
     public abstract String toString();
 }

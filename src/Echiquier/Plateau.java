@@ -1,6 +1,6 @@
 package Echiquier;
 
-import piece.Piece;
+import Echec.IPiece;
 
 import java.util.ArrayList;
 
@@ -12,16 +12,16 @@ public class Plateau {
     private static final int MIN = 1;
     private static final int MAX = 8;
 
-    private ArrayList<Piece> piecesBlanches = new ArrayList<>();
-    private ArrayList<Piece> piecesNoires = new ArrayList<>();
+    private ArrayList<IPiece> piecesBlanches = new ArrayList<>();
+    private ArrayList<IPiece> piecesNoires = new ArrayList<>();
 
-    private Piece getPieceAtCoords(int colonne, int ligne){
+    private IPiece getPieceAtCoords(int colonne, int ligne){
 
-        for(Piece p : piecesBlanches)
+        for(IPiece p : piecesBlanches)
             if (p.isPieceInCoords(colonne, ligne))
                 return p;
 
-        for(Piece p : piecesNoires)
+        for(IPiece p : piecesNoires)
             if (p.isPieceInCoords(colonne, ligne))
                 return p;
 
