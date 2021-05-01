@@ -15,10 +15,12 @@ public abstract class Piece implements IPiece {
         return this.colonne == colonne && this.ligne == ligne;
     }
 
+    @Override
     public int getLigne() {
         return ligne;
     }
 
+    @Override
     public int getColonne() {
         return colonne;
     }

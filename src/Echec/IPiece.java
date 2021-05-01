@@ -12,5 +12,8 @@ public interface IPiece {
 
     boolean craintEchec();
 
+    int getColonne();
+    int getLigne();
+
     String toString();
 }
