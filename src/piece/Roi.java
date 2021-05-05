@@ -12,7 +12,15 @@ public class Roi extends Piece{
 
     @Override
     public boolean peutAllerEn(int colonne, int ligne) {
-        return false;
+        //Vérif coup dans plateau
+        if(colonne > 8 || colonne < 1 || ligne > 8|| ligne < 1 ) // IMPORTER CONSTANTES ?????????????????
+            return false;
+        //Vérif coup légal
+        Roi r2 = new Roi(colonne,ligne);
+        if(r2.craintEchec())
+            return false;
+        //Vérif coup dans range
+        return Math.abs(colonne - this.getColonne()) == 1 && Math.abs(ligne - this.getLigne()) == 1;
     }
 
     @Override

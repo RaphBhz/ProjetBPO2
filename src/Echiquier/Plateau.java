@@ -1,6 +1,7 @@
 package Echiquier;
 
 import Echec.IPiece;
+import piece.*;
 
 import java.util.ArrayList;
 
@@ -14,6 +15,13 @@ public class Plateau {
 
     private ArrayList<IPiece> piecesBlanches = new ArrayList<>();
     private ArrayList<IPiece> piecesNoires = new ArrayList<>();
+
+    public Plateau(){
+        piecesBlanches.add(new Roi(5, 1) {
+        });
+        piecesNoires.add(new Roi(4, 8) {
+        });
+    }
 
     private IPiece getPieceAtCoords(int colonne, int ligne){
 
@@ -47,8 +55,8 @@ public class Plateau {
                 else
                     sB.append(" ");
 
-                if (isCaseOccupee(i,j))
-                    sB.append(getPieceAtCoords(i,j));
+                if (isCaseOccupee(j+1,i+1))
+                    sB.append(getPieceAtCoords(j+1,i+1));
                 else
                     sB.append(" ");
 
