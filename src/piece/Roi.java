@@ -17,7 +17,7 @@ public class Roi extends Piece{
             return false;
         //Vérif coup légal
         Roi r2 = new Roi(colonne,ligne);
-        if(r2.craintEchec())
+        if(!r2.craintEchec())
             return false;
         //Vérif coup dans range
         return Math.abs(colonne - this.getColonne()) <= 1 && Math.abs(ligne - this.getLigne()) <= 1;
@@ -25,7 +25,12 @@ public class Roi extends Piece{
 
     @Override
     public boolean craintEchec() {
-        return false;
+        return true;
+    }
+
+    @Override
+    public boolean coupLegal(int colonne, int ligne){
+        return true;
     }
 
     @Override

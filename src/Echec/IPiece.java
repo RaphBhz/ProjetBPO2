@@ -12,11 +12,13 @@ public interface IPiece {
 
     boolean craintEchec();
 
+    boolean coupLegal(int colonne, int ligne);
+
     int getColonne();
     int getLigne();
-    public void setColonne(int i);
-    public void setLigne(int i);
-    public void setPos(int i, int j);
+    void setColonne(int i);
+    void setLigne(int i);
+    void setPos(int i, int j);
 
     void move(int colonne, int ligne);
 

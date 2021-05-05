@@ -26,6 +26,9 @@ public abstract class Piece implements IPiece {
     }
 
     @Override
+    public abstract boolean coupLegal(int colonne, int ligne);
+
+    @Override
     public abstract boolean peutAllerEn(int colonne, int ligne);
 
     @Override
