@@ -46,6 +46,10 @@ public class Plateau {
             if (p.toString().equals(s) && p.peutAllerEn(colonne, ligne))
                 p.move(colonne, ligne);
         }
+        for (IPiece p : piecesNoires) {
+            if (p.toString().equals(s) && p.peutAllerEn(colonne, ligne))
+                p.move(colonne, ligne);
+        }
     }
 
     @Override
