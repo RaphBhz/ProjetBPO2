@@ -45,11 +45,14 @@ public class Plateau {
         for (IPiece p : piecesBlanches) {
             if (p.toString().equals(s) && p.peutAllerEn(colonne, ligne))
                 p.move(colonne, ligne);
-        }
-        for (IPiece p : piecesNoires) {
-            if (p.toString().equals(s) && p.peutAllerEn(colonne, ligne))
-                p.move(colonne, ligne);
-        }
+            return;
+            }
+       for (IPiece p : piecesNoires) {
+           if (p.toString().equals(s) && p.peutAllerEn(colonne, ligne)){
+            p.move(colonne, ligne);
+            return;
+           }
+       }
     }
 
     @Override
