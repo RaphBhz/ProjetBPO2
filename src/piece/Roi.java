@@ -20,12 +20,17 @@ public class Roi extends Piece{
         if(r2.craintEchec())
             return false;
         //Vérif coup dans range
-        return Math.abs(colonne - this.getColonne()) == 1 && Math.abs(ligne - this.getLigne()) == 1;
+        return Math.abs(colonne - this.getColonne()) <= 1 && Math.abs(ligne - this.getLigne()) <= 1;
     }
 
     @Override
     public boolean craintEchec() {
-        return true;
+        return false;
+    }
+
+    @Override
+    public void move(int colonne, int ligne) {
+        setPos(colonne, ligne);
     }
 
     @Override

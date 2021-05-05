@@ -41,6 +41,13 @@ public class Plateau {
         return getPieceAtCoords(colonne, ligne) != null;
     }
 
+    public void bouger(String s, int colonne, int ligne){
+        for (IPiece p : piecesBlanches) {
+            if (p.toString().equals(s) && p.peutAllerEn(colonne, ligne))
+                p.move(colonne, ligne);
+        }
+    }
+
     @Override
     public String toString() {
         StringBuilder sB = new StringBuilder();

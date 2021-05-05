@@ -11,6 +11,8 @@ public class App {
         System.out.println("wassup bitch");
         Plateau pl = new Plateau();
         System.out.println(pl);
+        pl.bouger("R", 5, 2);
+        System.out.println(pl);
         System.out.println("bye bitch");
     }
 }

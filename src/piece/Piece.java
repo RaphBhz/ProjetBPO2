@@ -32,6 +32,22 @@ public abstract class Piece implements IPiece {
     public boolean craintEchec() {
         return false;
     }
+
+    @Override
+    public void setColonne(int i){
+        this.colonne = i;
+    }
+
+    @Override
+    public void setLigne(int i){
+        this.ligne = i;
+    }
+
+    @Override
+    public void setPos(int i, int j){
+        setColonne(i);
+        setLigne(j);
+    }
     
     @Override
     public abstract String toString();
