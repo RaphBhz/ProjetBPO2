@@ -16,8 +16,7 @@ public class Roi extends Piece{
         if(colonne > 8 || colonne < 1 || ligne > 8|| ligne < 1 ) // IMPORTER CONSTANTES ?????????????????
             return false;
         //Vérif coup légal
-        Roi r2 = new Roi(colonne,ligne);
-        if(!r2.craintEchec())
+        if(!this.coupLegal(colonne, ligne))
             return false;
         //Vérif coup dans range
         return Math.abs(colonne - this.getColonne()) <= 1 && Math.abs(ligne - this.getLigne()) <= 1;
