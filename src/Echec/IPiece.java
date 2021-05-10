@@ -1,26 +1,22 @@
 package Echec;
 
+import Echiquier.Coords;
+
 /**
  * @author LE GAL Florian
  * @date 27/04/2021
  */
 public interface IPiece {
 
-    boolean isPieceInCoords(int colonne, int ligne);
+    boolean isPieceInCoords(Coords coords);
 
-    boolean peutAllerEn(int colonne, int ligne);
+    boolean peutAllerEn(Coords coords);
 
     boolean craintEchec();
 
-    boolean coupLegal(int colonne, int ligne);
+    boolean coupLegal(Coords coords);
 
-    int getColonne();
-    int getLigne();
-    void setColonne(int i);
-    void setLigne(int i);
-    void setPos(int i, int j);
-
-    void move(int colonne, int ligne);
+    void setPos(Coords coords);
 
     String toString();
 }

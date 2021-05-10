@@ -1,55 +1,37 @@
 package piece;
 
 import Echec.IPiece;
+import Echiquier.Coords;
 
 public abstract class Piece implements IPiece {
-    private int colonne, ligne;
+    private Coords coords;
 
-    public Piece(int colonne, int ligne) {
-        this.colonne = colonne;
-        this.ligne = ligne;
+    public Piece(Coords coords) {
+        this.coords = coords;
     }
 
     @Override
-    public boolean isPieceInCoords(int colonne, int ligne) {
-        return this.colonne == colonne && this.ligne == ligne;
+    public boolean isPieceInCoords(Coords coords) {
+        return this.coords.equals(coords);
     }
 
-    @Override
-    public int getLigne() {
-        return ligne;
-    }
+    public Coords getCoords(){return this.coords;}
 
     @Override
-    public int getColonne() {
-        return colonne;
-    }
+    public abstract boolean coupLegal(Coords coords);
 
     @Override
-    public abstract boolean coupLegal(int colonne, int ligne);
-
-    @Override
-    public abstract boolean peutAllerEn(int colonne, int ligne);
+    public abstract boolean peutAllerEn(Coords coords);
 
     @Override
     public boolean craintEchec() {
         return false;
     }
 
-    @Override
-    public void setColonne(int i){
-        this.colonne = i;
-    }
 
     @Override
-    public void setLigne(int i){
-        this.ligne = i;
-    }
-
-    @Override
-    public void setPos(int i, int j){
-        setColonne(i);
-        setLigne(j);
+    public void setPos(Coords coords){
+        this.coords = coords;
     }
     
     @Override

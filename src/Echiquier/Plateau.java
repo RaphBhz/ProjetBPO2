@@ -16,40 +16,42 @@ public class Plateau {
     private ArrayList<IPiece> piecesBlanches = new ArrayList<>();
     private ArrayList<IPiece> piecesNoires = new ArrayList<>();
 
+    private int gagnant = -1;
+
     public Plateau(){
-        piecesBlanches.add(new Roi(5, 1) {
+        piecesBlanches.add(new Roi(new Coords(5,1)) {
         });
-        piecesNoires.add(new Roi(4, 8) {
+        piecesNoires.add(new Roi(new Coords(4,8)) {
         });
     }
 
-    private IPiece getPieceAtCoords(int colonne, int ligne){
+    private IPiece getPieceAtCoords(Coords coords){
 
         for(IPiece p : piecesBlanches)
-            if (p.isPieceInCoords(colonne, ligne))
+            if (p.isPieceInCoords(coords))
                 return p;
 
         for(IPiece p : piecesNoires)
-            if (p.isPieceInCoords(colonne, ligne))
+            if (p.isPieceInCoords(coords))
                 return p;
 
         return null;
     }
 
-    private boolean isCaseOccupee(int colonne, int ligne){
+    private boolean isCaseOccupee(Coords coords){
 
-        return getPieceAtCoords(colonne, ligne) != null;
+        return getPieceAtCoords(coords) != null;
     }
 
-    public void bouger(String s, int colonne, int ligne){
+    public void bouger(String s, Coords coords){
         for (IPiece p : piecesBlanches) {
-            if (p.toString().equals(s) && p.peutAllerEn(colonne, ligne))
-                p.move(colonne, ligne);
+            if (p.toString().equals(s) && p.peutAllerEn(coords))
+                p.setPos(coords);
             return;
             }
        for (IPiece p : piecesNoires) {
-           if (p.toString().equals(s) && p.peutAllerEn(colonne, ligne)){
-            p.move(colonne, ligne);
+           if (p.toString().equals(s) && p.peutAllerEn(coords)){
+               p.setPos(coords);
             return;
            }
        }
@@ -59,6 +61,7 @@ public class Plateau {
     public String toString() {
         StringBuilder sB = new StringBuilder();
         sB.append("    a   b   c   d   e   f   g   h\n");
+        Coords coords;
         for (int i = MAX-1; i>=0; i--){
             sB.append("   --- --- --- --- --- --- --- ---\n");
             for(int j = 0; j<MAX; j++){
@@ -68,9 +71,9 @@ public class Plateau {
                 }
                 else
                     sB.append(" ");
-
-                if (isCaseOccupee(j+1,i+1))
-                    sB.append(getPieceAtCoords(j+1,i+1));
+                coords = new Coords(j+1,i+1);
+                if (isCaseOccupee(coords))
+                    sB.append(getPieceAtCoords(coords));
                 else
                     sB.append(" ");
 
@@ -83,5 +86,8 @@ public class Plateau {
         sB.append("   --- --- --- --- --- --- --- ---\n");
         sB.append("    a   b   c   d   e   f   g   h\n");
         return sB.toString();
+    }
+    public boolean gagnantExistant(){
+        return gagnant != -1;
     }
 }
