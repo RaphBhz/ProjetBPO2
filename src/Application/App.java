@@ -25,7 +25,7 @@ public class App {
 
         System.out.println("wassup bitch");
         System.out.println(pl);
-        pl.bouger("R", new Coords(5,2));
+        pl.bouger("R", new Coords(5, 2));
         //Roi roi = new Roi(new Coords(1,1));
         //roi.setPos(new Coords(2,2));
         //System.out.println(roi.getCoords().getColonne()+ "" + roi.getCoords().getLigne());
@@ -33,7 +33,5 @@ public class App {
         System.out.println("bye bitch");
         while (!pl.gagnantExistant())
             break;
-
-
     }
 }

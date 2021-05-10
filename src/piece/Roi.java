@@ -1,6 +1,7 @@
 package piece;
 
 import Echiquier.Coords;
+import Echiquier.Plateau;
 
 /**
  * @author LE GAL Florian
@@ -35,9 +36,7 @@ public class Roi extends Piece{
     }
 
     @Override
-    public boolean coupLegal(Coords coords){
-        return true;
-    }
+    public boolean coupLegal(Coords coords){ return true; }
 
 
     @Override
