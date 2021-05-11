@@ -1,6 +1,7 @@
 package Echec;
 
 import Echiquier.Coords;
+import Echiquier.Plateau;
 
 /**
  * @author LE GAL Florian
@@ -10,13 +11,15 @@ public interface IPiece {
 
     boolean isPieceInCoords(Coords coords);
 
-    boolean peutAllerEn(Coords coords);
+    boolean peutAllerEn(Coords coords, Plateau pl);
 
     boolean craintEchec();
 
-    boolean coupLegal(Coords coords);
+    boolean coupLegal(Coords coords, Plateau pl);
 
     void setPos(Coords coords);
+
+    boolean menace(Coords coords);
 
     String toString();
 }

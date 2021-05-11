@@ -28,9 +28,7 @@ public class Coords {
             return false;
         if (this == coords)
             return true;
-        if (this.ligne == coords.getLigne() && this.colonne == coords.getColonne())
-            return true;
-        return false;
+        return this.ligne == coords.getLigne() && this.colonne == coords.getColonne();
     }
 
 

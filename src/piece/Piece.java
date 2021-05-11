@@ -2,6 +2,7 @@ package piece;
 
 import Echec.IPiece;
 import Echiquier.Coords;
+import Echiquier.Plateau;
 
 public abstract class Piece implements IPiece {
     private Coords coords;
@@ -18,16 +19,18 @@ public abstract class Piece implements IPiece {
     public Coords getCoords(){return this.coords;}
 
     @Override
-    public abstract boolean coupLegal(Coords coords);
+    public abstract boolean coupLegal(Coords coords, Plateau pl);
 
     @Override
-    public abstract boolean peutAllerEn(Coords coords);
+    public abstract boolean peutAllerEn(Coords coords, Plateau pl);
 
     @Override
     public boolean craintEchec() {
         return false;
     }
 
+    @Override
+    public abstract boolean menace(Coords coords);
 
     @Override
     public void setPos(Coords coords){

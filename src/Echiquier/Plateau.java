@@ -20,9 +20,9 @@ public class Plateau {
     private int compteur = 0;
 
     public Plateau() {
-        piecesBlanches.add(new Roi(new Coords(5, 1)) {
+        piecesBlanches.add(new Roi(new Coords(1, 5)) {
         });
-        piecesNoires.add(new Roi(new Coords(4, 8)) {
+        piecesNoires.add(new Roi(new Coords(8, 4)) {
         });
     }
 
@@ -47,7 +47,7 @@ public class Plateau {
     public void bouger(String s, Coords coords) {
 
         for (IPiece p : pieces[compteur%2]) {
-            if (p.toString().equals(s) && p.peutAllerEn(coords)) {
+            if (p.toString().equals(s) && p.peutAllerEn(coords, this)) {
                 p.setPos(coords);
                 compteur++;
             }
@@ -68,7 +68,7 @@ public class Plateau {
                     sB.append("| ");
                 } else
                     sB.append(" ");
-                coords = new Coords(j + 1, i + 1);
+                coords = new Coords(i + 1, j + 1);
                 if (isCaseOccupee(coords))
                     sB.append(getPieceAtCoords(coords));
                 else
@@ -89,5 +89,12 @@ public class Plateau {
         return gagnant != -1;
     }
 
+    public boolean isCaseSafe(Coords coords){
+        for (IPiece p : pieces[(compteur+1)%2]) {
+            if(p.menace(coords))
+                return false;
+        }
+        return true;
+    }
 
 }
