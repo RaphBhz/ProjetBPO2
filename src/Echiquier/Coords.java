@@ -19,7 +19,7 @@ public class Coords {
         return ligne;
     }
 
-    public boolean isNotLegal(){
+    public boolean isNotOnBoard(){
         return colonne > 8 || colonne < 1 || ligne > 8 || ligne < 1;
     }
 
