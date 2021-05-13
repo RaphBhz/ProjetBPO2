@@ -31,5 +31,12 @@ public class Coords {
         return this.ligne == coords.getLigne() && this.colonne == coords.getColonne();
     }
 
+    @Override
+    public String toString() {
+        return "Coords{" +
+                "ligne=" + ligne +
+                ", colonne=" + colonne +
+                '}';
+    }
 
 }

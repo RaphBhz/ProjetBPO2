@@ -9,8 +9,8 @@ import Echiquier.Plateau;
  */
 public class Roi extends Piece{
 
-    public Roi(Coords coords) {
-        super(coords);
+    public Roi(Coords coords, Couleur couleur) {
+        super(coords, couleur);
     }
 
     @Override
@@ -21,11 +21,17 @@ public class Roi extends Piece{
             return false;
         }
         //Vérif coup légal
-        if(!this.coupLegal(coords, pl)){
+        if(!this.coupLegal(coords)){
             System.out.println("peutAllerEn : ERR2: LE COUP N'EST PAS LEGAL");
             return false;
 
         }
+
+        if (!pl.isCaseSafe(coords, this.getCouleur())) {
+            System.out.println("peutAllerEn : ERR3: LA CASE VISEE N'EST PAS SAFE");
+            return false;
+        }
+
         //Vérif coup dans range et pas immobile
         return Math.abs(coords.getColonne() - this.getCoords().getColonne()) <= 1 && Math.abs(coords.getLigne() - this.getCoords().getLigne()) <= 1
                 && !(this.getCoords().equals(coords));
@@ -36,10 +42,6 @@ public class Roi extends Piece{
         return true;
     }
 
-    @Override
-    public boolean coupLegal(Coords coords, Plateau pl){
-        return pl.isCaseSafe(coords);
-    }
 
     @Override
     public boolean menace(Coords coords){
@@ -49,7 +51,7 @@ public class Roi extends Piece{
 
     @Override
     public String toString() {
-        return "R";
+        return isBlack() ? "r" : "R";
     }
 
 

@@ -2,6 +2,7 @@ package Echec;
 
 import Echiquier.Coords;
 import Echiquier.Plateau;
+import piece.Couleur;
 
 /**
  * @author LE GAL Florian
@@ -15,9 +16,9 @@ public interface IPiece {
 
     boolean craintEchec();
 
-    boolean coupLegal(Coords coords, Plateau pl);
-
     void setPos(Coords coords);
+
+    Couleur getCouleur();
 
     boolean menace(Coords coords);
 

@@ -6,9 +6,11 @@ import Echiquier.Plateau;
 
 public abstract class Piece implements IPiece {
     private Coords coords;
+    private final Couleur couleur;
 
-    public Piece(Coords coords) {
+    public Piece(Coords coords, Couleur couleur) {
         this.coords = coords;
+        this.couleur = couleur;
     }
 
     @Override
@@ -18,9 +20,13 @@ public abstract class Piece implements IPiece {
 
     public Coords getCoords(){return this.coords;}
 
-    @Override
-    public abstract boolean coupLegal(Coords coords, Plateau pl);
+    public boolean coupLegal(Coords newCoords){
+        if (this.coords.equals(newCoords))
+            return false;
 
+        return !newCoords.isNotOnBoard();
+
+    }
     @Override
     public abstract boolean peutAllerEn(Coords coords, Plateau pl);
 
@@ -31,6 +37,11 @@ public abstract class Piece implements IPiece {
 
     @Override
     public abstract boolean menace(Coords coords);
+
+    @Override
+    public Couleur getCouleur(){ return this.couleur; }
+
+    public boolean isBlack(){return this.couleur == Couleur.NOIR;}
 
     @Override
     public void setPos(Coords coords){

@@ -25,7 +25,7 @@ public class App {
 
         System.out.println("wassup bitch");
         System.out.println(pl);
-        pl.bouger("R", new Coords(2, 5));
+        pl.bouger(new Coords(1,5), new Coords(2, 5));
         //Roi roi = new Roi(new Coords(1,1));
         //roi.setPos(new Coords(2,2));
         //System.out.println(roi.getCoords().getColonne()+ "" + roi.getCoords().getLigne());
