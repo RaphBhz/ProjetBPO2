@@ -20,10 +20,8 @@ public class Plateau {
     private int compteur = 0;
 
     public Plateau() {
-        piecesBlanches.add(new Roi(new Coords(1, 5)) {
-        });
-        piecesNoires.add(new Roi(new Coords(8, 4)) {
-        });
+        piecesBlanches.add(new Roi(new Coords(1, 5)));
+        piecesNoires.add(new Roi(new Coords(8, 4)));
     }
 
     private IPiece getPieceAtCoords(Coords coords) {
