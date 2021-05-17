@@ -38,5 +38,4 @@ public class Coords {
                 ", colonne=" + colonne +
                 '}';
     }
-
 }

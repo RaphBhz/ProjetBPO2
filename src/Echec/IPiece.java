@@ -24,8 +24,4 @@ public interface IPiece {
     boolean menace(Coords coords);
 
     String toString();
-
-    void attack(Piece attacker, Piece attacked);
-
-     void die(Plateau p, Piece dyingPiece, Coords dyingPieceCoords);
 }

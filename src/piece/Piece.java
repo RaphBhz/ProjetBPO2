@@ -43,6 +43,10 @@ public abstract class Piece implements IPiece {
 
     public boolean isBlack(){return this.couleur == Couleur.NOIR;}
 
+    public boolean isSameColor(Piece p){
+        return this.couleur == p.couleur;
+    }
+
     @Override
     public void setPos(Coords coords){
         this.coords = coords;
@@ -50,14 +54,4 @@ public abstract class Piece implements IPiece {
     
     @Override
     public abstract String toString();
-
-    @Override
-    public void die(Plateau p, Piece dyingPiece, Coords dyingPieceCoords){///////////////////////
-
-    }
-
-    @Override
-    public void attack(Piece attacker, Piece attacked){
-        if(attacker.coords == attacked.coords);///////////////////
-    }
 }

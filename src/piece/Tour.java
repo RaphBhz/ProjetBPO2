@@ -19,7 +19,7 @@ public class Tour extends Piece{
         if (!this.coupLegal(newCoords, pl))
             return false;
 
-        Coords currentCoords =  this.getCoords();
+        Coords currentCoords = this.getCoords();
         // check si déplacement est vertical
         if (currentCoords.getColonne() == newCoords.getColonne() &&
             currentCoords.getLigne() != newCoords.getLigne()) {
