@@ -3,6 +3,7 @@ package Echec;
 import Echiquier.Coords;
 import Echiquier.Plateau;
 import piece.Couleur;
+import piece.Piece;
 
 /**
  * @author LE GAL Florian
@@ -23,4 +24,8 @@ public interface IPiece {
     boolean menace(Coords coords);
 
     String toString();
+
+    void attack(Piece attacker, Piece attacked);
+
+     void die(Plateau p, Piece dyingPiece, Coords dyingPieceCoords);
 }

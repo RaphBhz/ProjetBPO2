@@ -50,4 +50,14 @@ public abstract class Piece implements IPiece {
     
     @Override
     public abstract String toString();
+
+    @Override
+    public void die(Plateau p, Piece dyingPiece, Coords dyingPieceCoords){///////////////////////
+
+    }
+
+    @Override
+    public void attack(Piece attacker, Piece attacked){
+        if(attacker.coords == attacked.coords);///////////////////
+    }
 }

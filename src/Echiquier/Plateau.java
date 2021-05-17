@@ -15,7 +15,7 @@ public class Plateau {
 
     private ArrayList<IPiece> pieces = new ArrayList<>();
     private int gagnant = -1;
-    private int compteur = 0;
+    private int nbTour = 0;
 
     public Plateau() {
 
@@ -44,7 +44,7 @@ public class Plateau {
             System.out.println("Impossible de trouver la pièce aux coords " + oldCoords);
         else if (piece.peutAllerEn(newCoords, this)){
             piece.setPos(newCoords);
-            compteur++;
+            nbTour++;
         }
         else
             System.out.println("rien");
@@ -80,6 +80,10 @@ public class Plateau {
         return sB.toString();
     }
 
+    public int getNbTour(){
+        return this.nbTour;
+    }
+
     public boolean gagnantExistant() {
         return gagnant != -1;
     }
@@ -91,5 +95,4 @@ public class Plateau {
         }
         return true;
     }
-
 }
