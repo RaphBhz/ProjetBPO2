@@ -38,4 +38,9 @@ public class Coords {
                 ", colonne=" + colonne +
                 '}';
     }
+
+    public void setCoords(int ligne, int colonne) {
+        this.ligne = ligne;
+        this.colonne = colonne;
+    }
 }
