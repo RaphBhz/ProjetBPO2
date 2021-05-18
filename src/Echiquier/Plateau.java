@@ -95,4 +95,8 @@ public class Plateau {
         }
         return true;
     }
+
+    public void removePiece(IPiece piece){
+        this.pieces.remove(piece);
+    }
 }
