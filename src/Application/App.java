@@ -3,6 +3,8 @@ package Application;
 import Echiquier.Coords;
 import Echiquier.FabriquePlateau;
 import Echiquier.Plateau;
+import Joueur.Joueur;
+import piece.Couleur;
 import piece.Roi;
 
 import java.util.Scanner;
@@ -21,7 +23,8 @@ public class App {
         System.out.println("Défaut: IA contre IA");
 
         Plateau pl = FabriquePlateau.createPlateau(sc.next());
-
+        Joueur joueur = new Joueur(Couleur.NOIR);
+        System.out.println(joueur.setCoordsWithInput());
 
         System.out.println("wassup bitch");
         System.out.println(pl);
