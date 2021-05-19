@@ -1,9 +1,8 @@
 package Echec;
 
-import Echiquier.Coords;
+import utilitaire.Coords;
 import Echiquier.Plateau;
 import piece.Couleur;
-import piece.Piece;
 
 /**
  * @author LE GAL Florian

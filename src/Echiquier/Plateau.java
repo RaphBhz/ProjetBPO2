@@ -1,7 +1,10 @@
 package Echiquier;
 
 import Echec.IPiece;
+import joueur.IPlayer;
 import piece.*;
+import utilitaire.Coords;
+import utilitaire.PaireCoords;
 
 import java.util.ArrayList;
 
@@ -13,11 +16,16 @@ public class Plateau {
     public static final int MIN = 1;
     public static final int MAX = 8;
 
+    private IPlayer joueurs[] = new IPlayer[2];
+
     private ArrayList<IPiece> pieces = new ArrayList<>();
     private int gagnant = -1;
     private int nbTour = 0;
 
-    public Plateau() {
+    public Plateau(IPlayer joueur1, IPlayer joueur2) {
+        joueurs[0] = joueur1;
+        joueurs[1] = joueur2;
+
 
         pieces.add(PieceFactory.createPiece(Couleur.BLANC, TypesPieces.ROI, new Coords(1,5)));
         pieces.add(PieceFactory.createPiece(Couleur.NOIR, TypesPieces.ROI, new Coords(8, 4)));
@@ -50,6 +58,52 @@ public class Plateau {
             System.out.println("rien");
     }
 
+    /**
+     * Permet de jouer un coup
+     * @return Une string du déplacement effectué ou bien une erreur
+     */
+    public PaireCoords play(){
+
+        PaireCoords paireCoords = joueurs[nbTour%2].play();
+
+        while (!this.canCoordsBePlayed(paireCoords))
+            paireCoords = joueurs[nbTour%2].play();
+
+        if (this.isCaseOccupee(paireCoords.getCoordsFin()))
+            pieces.remove(getPieceAtCoords(paireCoords.getCoordsFin()));
+
+        this.getPieceAtCoords(paireCoords.getCoordsDepart()).setPos(paireCoords.getCoordsFin());
+        return paireCoords;
+    }
+
+    private boolean canCoordsBePlayed(PaireCoords paireCoords) {
+        System.out.println(paireCoords.getCoordsDepart());
+
+        if (!isCaseOccupee(paireCoords.getCoordsDepart())) { // S'il n'y a pas de pièce aux premières coords précisées
+            System.out.println("canCoordsBePlayed Erreur 1");
+            return false;
+        }
+        if (getPieceAtCoords(paireCoords.getCoordsDepart()).getCouleur() != joueurs[nbTour % 2].getCouleur()) { // Si la première pièce précisée n'est pas de la couleur du joueur
+            System.out.println("canCoordsBePlayed Erreur 2");
+            return false;
+        }
+
+        if (!canPiecePlayCoords(paireCoords)) { // toute la logique de la pièce se fait ici
+            System.out.println("canCoordsBePlayed Erreur 3");
+            return false;
+        }
+        if (isCaseOccupee(paireCoords.getCoordsFin())) // Si la case d'arrivée possède une pièce, vérifier qu'elle n'est pas de la couleur du joueur
+            return getPieceAtCoords(paireCoords.getCoordsFin()).getCouleur() != joueurs[nbTour % 2].getCouleur();
+
+        return true;
+
+    }
+
+    public boolean canPiecePlayCoords(PaireCoords paireCoords){
+        IPiece piece = getPieceAtCoords(paireCoords.getCoordsDepart());
+        return piece.peutAllerEn(paireCoords.getCoordsFin(), this);
+
+    }
     @Override
     public String toString() {
         StringBuilder sB = new StringBuilder();

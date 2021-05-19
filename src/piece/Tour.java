@@ -1,6 +1,6 @@
 package piece;
 
-import Echiquier.Coords;
+import utilitaire.Coords;
 import Echiquier.Plateau;
 
 public class Tour extends Piece{

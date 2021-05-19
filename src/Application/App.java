@@ -1,15 +1,13 @@
 package Application;
 
 import Echec.IPiece;
-import Echiquier.Coords;
+import utilitaire.Coords;
 import Echiquier.FabriquePlateau;
 import Echiquier.Plateau;
-import Joueur.Joueur;
+import joueur.Joueur;
 import piece.Couleur;
-import piece.Piece;
-import piece.Roi;
+import utilitaire.PaireCoords;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,20 +17,29 @@ import java.util.Scanner;
  */
 public class App {
     public static void main(String[] args) {
-        Scanner sc1 = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         System.out.println("Choix du mode de jeu: ");
         System.out.println("1- Joueur contre joueur");
         System.out.println("2- Joueur contre IA");
         System.out.println("3- IA contre IA");
         System.out.println("Défaut: IA contre IA");
 
-        Plateau pl = FabriquePlateau.createPlateau(sc1.next());
+        Plateau pl = FabriquePlateau.createPlateau(sc.nextLine());
+        System.out.println(pl);
+        PaireCoords paireCoords;
 
+        while (!pl.gagnantExistant()) {
+            paireCoords = pl.play();
+            System.out.println("Pièce déplacée en " + paireCoords.getCoordsFin()); // peut-être utiliser les exceptions et donc faire un try catch
+            System.out.println(pl);
+            break;
+        }
+
+        /*
         Joueur joueur = new Joueur(Couleur.NOIR);
 
         // INPUT : oldCoords newCoords
-        Scanner sc2 = new Scanner(System.in);
-        String input = sc2.next();
+        String input = sc.next();
         ArrayList<Coords> oldAndNewCoords = joueur.setInputIntoCoords(input);
         IPiece pieceAtCoords;
         if(oldAndNewCoords != null) { // Si y a une pièce sur la destination
@@ -56,7 +63,6 @@ public class App {
         //System.out.println(roi.getCoords().getColonne()+ "" + roi.getCoords().getLigne());
         System.out.println(pl);
         System.out.println("bye bitch");
-        while (!pl.gagnantExistant())
-            break;
+        */
     }
 }

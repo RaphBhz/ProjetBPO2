@@ -1,7 +1,7 @@
 package piece;
 
 import Echec.IPiece;
-import Echiquier.Coords;
+import utilitaire.Coords;
 import Echiquier.Plateau;
 
 public abstract class Piece implements IPiece {
@@ -24,7 +24,7 @@ public abstract class Piece implements IPiece {
         if (this.coords.equals(newCoords))
             return false;
 
-        return !newCoords.isNotOnBoard();
+        return newCoords.isOnBoard();
 
     }
     @Override

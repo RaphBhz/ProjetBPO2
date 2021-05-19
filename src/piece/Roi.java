@@ -1,6 +1,6 @@
 package piece;
 
-import Echiquier.Coords;
+import utilitaire.Coords;
 import Echiquier.Plateau;
 
 /**
@@ -16,7 +16,7 @@ public class Roi extends Piece{
     @Override
     public boolean peutAllerEn(Coords coords, Plateau pl) {
         //Vérif coup dans plateau
-        if(coords.isNotOnBoard()) { // IMPORTER CONSTANTES ?????????????????
+        if(!coords.isOnBoard()) { // IMPORTER CONSTANTES ?????????????????
             System.out.println("peutAllerEn : ERR1: LE COUP N'EST PAS DANS LES COORDS DU PLATEAU");
             return false;
         }
