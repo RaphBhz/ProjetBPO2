@@ -64,10 +64,10 @@ public class Plateau {
      */
     public PaireCoords play(){
 
-        PaireCoords paireCoords = joueurs[nbTour%2].play();
+        PaireCoords paireCoords = joueurs[nbTour%2].play(this);
 
         while (!this.canCoordsBePlayed(paireCoords))
-            paireCoords = joueurs[nbTour%2].play();
+            paireCoords = joueurs[nbTour%2].play(this);
 
         if (this.isCaseOccupee(paireCoords.getCoordsFin()))
             pieces.remove(getPieceAtCoords(paireCoords.getCoordsFin()));
@@ -152,5 +152,9 @@ public class Plateau {
 
     public void removePiece(IPiece piece){
         this.pieces.remove(piece);
+    }
+
+    public PaireCoords getAllCoupPossible(Couleur couleur){
+        return new PaireCoords(new Coords(0, 0), new Coords(0, 0));
     }
 }

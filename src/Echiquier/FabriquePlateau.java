@@ -1,5 +1,6 @@
 package Echiquier;
 
+import joueur.IA;
 import joueur.Joueur;
 import piece.Couleur;
 
@@ -12,8 +13,12 @@ public class FabriquePlateau {
         switch (choice){
             case "1":
                 return new Plateau(new Joueur(Couleur.BLANC), new Joueur(Couleur.NOIR));
+
+            case "2":
+                return new Plateau(new Joueur(Couleur.BLANC), new IA(Couleur.NOIR));
+
             default:
-                return new Plateau(new Joueur(Couleur.BLANC), new Joueur(Couleur.NOIR));
+                return new Plateau(new IA(Couleur.BLANC), new IA(Couleur.NOIR));
         }
 
     }

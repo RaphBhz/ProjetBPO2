@@ -18,7 +18,7 @@ public class Joueur extends Player{
     }
 
     @Override
-    public PaireCoords play(){
+    public PaireCoords play(Plateau pl){
         Scanner sc = new Scanner(System.in);
         String s = sc.nextLine();
 
@@ -41,7 +41,7 @@ public class Joueur extends Player{
     }
 
     private boolean validateInput(String input) {
-        String s = "[1-8][a-h] [1-8][a-h]";
+        String s = "[1-8][a-h] [1-8][a-h]"; // Peut être faire en sorte que l'on puisse jouer avec des majs aussi mais du coup il faudra changer stringToCoords
         return Pattern.matches(s, input);
     }
 

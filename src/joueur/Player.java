@@ -8,12 +8,13 @@ import piece.Couleur;
  */
 public abstract class Player implements IPlayer{
 
-    Couleur couleur;
+    private Couleur couleur;
 
     public Player(Couleur couleur){
         this.couleur = couleur;
     }
 
+    @Override
     public Couleur getCouleur(){
         return this.couleur;
     }

@@ -19,10 +19,6 @@ public class Coords {
         return ligne;
     }
 
-    public boolean isNotOnBoard(){
-        return colonne > 8 || colonne < 1 || ligne > 8 || ligne < 1;
-    }
-
     public boolean isOnBoard(){
         return colonne > 0 && colonne < 9 && ligne < 9 && ligne > 0;
     }

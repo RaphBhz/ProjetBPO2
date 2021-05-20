@@ -1,5 +1,6 @@
 package joueur;
 
+import Echiquier.Plateau;
 import piece.Couleur;
 import utilitaire.PaireCoords;
 
@@ -12,6 +13,6 @@ public interface IPlayer {
 
     Couleur getCouleur();
 
-    PaireCoords play();
+    PaireCoords play(Plateau pl);
 
 }
