@@ -31,6 +31,7 @@ public class Plateau {
         pieces.add(PieceFactory.createPiece(Couleur.BLANC, TypesPieces.ROI, new Coords(1,5)));
         pieces.add(PieceFactory.createPiece(Couleur.NOIR, TypesPieces.ROI, new Coords(8, 4)));
         pieces.add(PieceFactory.createPiece(Couleur.NOIR, TypesPieces.TOUR, new Coords(8, 1)));
+        pieces.add(PieceFactory.createPiece(Couleur.BLANC, TypesPieces.TOUR, new Coords(1, 1)));
 
     }
 
@@ -60,6 +61,7 @@ public class Plateau {
         while (!this.canCoordsBePlayed(paireCoords))
             paireCoords = joueurs[nbTour%2].play(this);
 
+        //VERIF COULEUR ??
         if (this.isCaseOccupee(paireCoords.getCoordsFin()))
             pieces.remove(getPieceAtCoords(paireCoords.getCoordsFin()));
 
@@ -176,11 +178,7 @@ public class Plateau {
             if (simulateWillKingBeChecked(getPieceAtCoords(paireCoords.getCoordsFin()), paireCoords.getCoordsFin())) // check si le déplacement ne met pas le roi en échec
                 return false;
         }
-
-
-
         return true;
-
     }
 
     /**
