@@ -32,7 +32,7 @@ public class App {
             paireCoords = pl.play();
             System.out.println("Pièce déplacée en " + paireCoords.getCoordsFin()); // peut-être utiliser les exceptions et donc faire un try catch
             System.out.println(pl);
-            break;
+            //break;
         }
 
         /*

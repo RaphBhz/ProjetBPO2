@@ -22,7 +22,5 @@ public interface IPiece {
 
     Couleur getCouleur();
 
-    boolean menace(Coords coords);
-
     String toString();
 }

@@ -9,15 +9,9 @@ public class Tour extends Piece{
         super(coords, couleur);
     }
 
-    private boolean coupLegal(Coords coords, Plateau pl) {
-        return false;
-    }
 
     @Override
     public boolean peutAllerEn(Coords newCoords, Plateau pl) {
-
-        if (!this.coupLegal(newCoords, pl))
-            return false;
 
         Coords currentCoords = this.getCoords();
         // check si déplacement est vertical
@@ -76,10 +70,6 @@ public class Tour extends Piece{
         return true;
     }
 
-    @Override
-    public boolean menace(Coords coords) {
-        return false;
-    }
 
     @Override
     public String toString() {

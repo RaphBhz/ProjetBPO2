@@ -18,6 +18,7 @@ public abstract class Piece implements IPiece {
         return this.coords.equals(coords);
     }
 
+    @Override
     public Coords getCoords(){return this.coords;}
 
     public boolean coupLegal(Coords newCoords){
@@ -28,15 +29,20 @@ public abstract class Piece implements IPiece {
 
     }
     @Override
-    public abstract boolean peutAllerEn(Coords coords, Plateau pl);
+    public boolean peutAllerEn(Coords coords, Plateau pl){
+        //Vérif coup pas immobile + Vérif coup dans plateau
+        if(!this.coupLegal(coords)){
+            System.out.println("peutAllerEn : ERR2: LE COUP N'EST PAS LEGAL");
+            return false;
+
+        }
+        return true;
+    }
 
     @Override
     public boolean craintEchec() {
         return false;
     }
-
-    @Override
-    public abstract boolean menace(Coords coords);
 
     @Override
     public Couleur getCouleur(){ return this.couleur; }
