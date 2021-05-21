@@ -11,6 +11,10 @@ public class Coords {
         this.colonne = colonne;
     }
 
+    public Coords(Coords coords){
+        this(coords.ligne, coords.colonne);
+    }
+
     public int getColonne() {
         return colonne;
     }

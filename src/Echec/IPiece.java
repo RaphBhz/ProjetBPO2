@@ -18,6 +18,8 @@ public interface IPiece {
 
     void setPos(Coords coords);
 
+    Coords getCoords();
+
     Couleur getCouleur();
 
     boolean menace(Coords coords);

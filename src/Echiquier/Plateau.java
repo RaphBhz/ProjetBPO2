@@ -7,6 +7,7 @@ import utilitaire.Coords;
 import utilitaire.PaireCoords;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * @author LE GAL Florian
@@ -154,7 +155,32 @@ public class Plateau {
         this.pieces.remove(piece);
     }
 
-    public PaireCoords getAllCoupPossible(Couleur couleur){
-        return new PaireCoords(new Coords(0, 0), new Coords(0, 0));
+    public PaireCoords getOneCoupPossible(Couleur couleur){
+        Random random = new Random();
+        ArrayList<PaireCoords> allCoups = getAllCoupPossible(couleur);
+        return allCoups.get(random.nextInt(allCoups.size()));
+    }
+
+    private ArrayList<PaireCoords> getAllCoupPossible(Couleur couleur){
+        ArrayList<PaireCoords> tabCoordsPossibles = new ArrayList<>();
+        for (IPiece piece : pieces) {
+            if (piece.getCouleur() == couleur)
+                tabCoordsPossibles.addAll(getAllCoupFromOnePiece(piece));
+        }
+
+        return tabCoordsPossibles;
+    }
+
+    private ArrayList<PaireCoords> getAllCoupFromOnePiece(IPiece piece){
+        ArrayList<PaireCoords> tabCoords = new ArrayList<>();
+        for (int i = MIN; i <= MAX; i++) {
+            for (int j = MIN; j <= MAX; j++) {
+                if (piece.peutAllerEn(new Coords(i,j), this))
+                    tabCoords.add(new PaireCoords(new Coords(piece.getCoords()), new Coords(i,j)));
+
+            }
+
+        }
+        return tabCoords;
     }
 }

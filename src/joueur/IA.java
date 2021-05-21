@@ -16,6 +16,6 @@ public class IA extends Player{
 
     @Override
     public PaireCoords play(Plateau pl) {
-        return pl.getAllCoupPossible(this.getCouleur());
+        return pl.getOneCoupPossible(this.getCouleur());
     }
 }
