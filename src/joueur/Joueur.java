@@ -2,12 +2,10 @@ package joueur;
 
 import utilitaire.Coords;
 import Echiquier.Plateau;
-import exception.InputNotRightException;
 import piece.Couleur;
 import piece.Roi;
 import utilitaire.PaireCoords;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
