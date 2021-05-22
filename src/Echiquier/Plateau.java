@@ -61,6 +61,7 @@ public class Plateau {
         while (!this.canCoordsBePlayed(paireCoords))
             paireCoords = joueurs[nbTour%2].play(this);
 
+
         //VERIF COULEUR ??
         if (this.isCaseOccupee(paireCoords.getCoordsFin()))
             pieces.remove(getPieceAtCoords(paireCoords.getCoordsFin()));
@@ -163,7 +164,7 @@ public class Plateau {
             return false;
         }
 
-        if (willKingBeChecked(paireCoords.getCoordsFin())) // Check que le roi n'est pas mis en échec
+        if (getPieceAtCoords(paireCoords.getCoordsDepart()).craintEchec() && willKingBeChecked(paireCoords.getCoordsFin())) // Check que le roi n'est pas mis en échec
             return false;
 
 
