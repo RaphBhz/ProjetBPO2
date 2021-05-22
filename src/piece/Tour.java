@@ -72,18 +72,18 @@ public class Tour extends Piece{
 
     private boolean checkAllCoordsVertical(int debut, int fin, Plateau pl, int dir){
         for (int i = debut + dir; i<=fin; i = i + dir){
-            if(pl.isCaseOccupee(new Coords(this.getCoords().getLigne(),i )))
+            if(pl.isCaseOccupee(new Coords(i, this.getCoords().getColonne())))
                 return i == fin &&
-                        pl.getPieceAtCoords(new Coords(this.getCoords().getLigne(), i)).getCouleur() != this.getCouleur();
+                        pl.getPieceAtCoords(new Coords(i, this.getCoords().getColonne())).getCouleur() != this.getCouleur();
         }
         return true;
     }
 
     private boolean checkAllCoordsHorizontal(int debut, int fin, Plateau pl, int dir){
         for (int i = debut + dir; i<=fin; i = i + dir){
-            if(pl.isCaseOccupee(new Coords(i, this.getCoords().getColonne())))
+            if(pl.isCaseOccupee(new Coords(this.getCoords().getLigne(), i)))
                 return i == fin &&
-                        pl.getPieceAtCoords(new Coords(this.getCoords().getColonne(), i)).getCouleur() != this.getCouleur();
+                        pl.getPieceAtCoords(new Coords(this.getCoords().getLigne(), i)).getCouleur() != this.getCouleur();
         }
         return true;
     }
