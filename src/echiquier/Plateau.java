@@ -208,11 +208,6 @@ public class Plateau {
         if (pieceDeleted != null)
             pieces.add(pieceDeleted);
 
-        if (echec)
-            System.out.println("Le roi est mis en echec.");
-        else
-            System.out.println("Le roi n'est pas mis en echec.");
-
         return echec;
     }
 
@@ -266,6 +261,8 @@ public class Plateau {
     public PaireCoords getOneCoupPossible(Couleur couleur){
         Random random = new Random();
         ArrayList<PaireCoords> allCoups = getAllCoupPossible(couleur);
+        if(allCoups.size() == 0)
+            return null;
         return allCoups.get(random.nextInt(allCoups.size()));
     }
 
@@ -276,9 +273,9 @@ public class Plateau {
      */
     private ArrayList<PaireCoords> getAllCoupPossible(Couleur couleur){
         ArrayList<PaireCoords> tabCoordsPossibles = new ArrayList<>();
-        for (IPiece piece : pieces) {
-            if (piece.getCouleur() == couleur)
-                tabCoordsPossibles.addAll(getAllCoupFromOnePiece(piece));
+        for (int i = 0; i < pieces.size() - 1; i++){
+            if (pieces.get(i).getCouleur() == couleur)
+                tabCoordsPossibles.addAll(getAllCoupFromOnePiece(pieces.get(i)));
         }
 
         return tabCoordsPossibles;
