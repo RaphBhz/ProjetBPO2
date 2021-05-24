@@ -97,6 +97,8 @@ public class Plateau {
     }
 
     private boolean isGameTied(){
+        if(!isKingChecked(joueurs[(nbTour + 1)%2].getCouleur()) && getAllCoupFromOnePiece(getKing(joueurs[(nbTour + 1)%2].getCouleur())).size() == 0)
+            return true;
         for(IPiece p : pieces)
             if(!p.craintEchec())
                 return false;
