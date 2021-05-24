@@ -1,9 +1,8 @@
 package joueur;
 
 import utilitaire.Coords;
-import Echiquier.Plateau;
+import echiquier.Plateau;
 import piece.Couleur;
-import piece.Roi;
 import utilitaire.PaireCoords;
 
 import java.util.Locale;

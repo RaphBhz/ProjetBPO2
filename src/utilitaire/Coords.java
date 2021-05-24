@@ -1,6 +1,6 @@
 package utilitaire;
 
-import Echiquier.Plateau;
+import echiquier.Plateau;
 
 /**
  * Classe utilitaire permettant de représenter des coordonnées plus facilement. Un objet de cette classe est imuable

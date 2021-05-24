@@ -2,10 +2,8 @@ package piece;
 
 import joueur.Joueur;
 import utilitaire.Coords;
-import Echiquier.Plateau;
+import echiquier.Plateau;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class RoiTest {
 

@@ -1,7 +1,7 @@
-package Echec;
+package echec;
 
 import utilitaire.Coords;
-import Echiquier.Plateau;
+import echiquier.Plateau;
 import piece.Couleur;
 
 /**

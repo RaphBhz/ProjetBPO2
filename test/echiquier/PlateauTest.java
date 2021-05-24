@@ -1,7 +1,6 @@
-package Echiquier;
+package echiquier;
 
 import org.junit.jupiter.api.Test;
-import piece.Couleur;
 import utilitaire.Coords;
 import utilitaire.PaireCoords;
 

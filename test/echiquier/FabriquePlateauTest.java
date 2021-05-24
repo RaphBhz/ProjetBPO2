@@ -1,8 +1,6 @@
-package Echiquier;
+package echiquier;
 
-import joueur.Joueur;
 import org.junit.jupiter.api.Test;
-import piece.Couleur;
 
 import static org.junit.jupiter.api.Assertions.*;
 

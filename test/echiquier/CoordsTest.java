@@ -1,4 +1,4 @@
-package Echiquier;
+package echiquier;
 
 import org.junit.jupiter.api.Test;
 import utilitaire.Coords;

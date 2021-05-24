@@ -1,6 +1,6 @@
 package piece;
 
-import Echec.IPiece;
+import echec.IPiece;
 import utilitaire.Coords;
 
 public abstract class Piece implements IPiece {

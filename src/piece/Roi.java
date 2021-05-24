@@ -1,7 +1,7 @@
 package piece;
 
 import utilitaire.Coords;
-import Echiquier.Plateau;
+import echiquier.Plateau;
 
 /**
  * Classe représentant le roi dans un jeu d'échecs

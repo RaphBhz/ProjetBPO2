@@ -1,9 +1,8 @@
-package Application;
+package application;
 
 
-import Echiquier.FabriquePlateau;
-import Echiquier.Plateau;
-import utilitaire.PaireCoords;
+import echiquier.FabriquePlateau;
+import echiquier.Plateau;
 
 import java.util.Scanner;
 

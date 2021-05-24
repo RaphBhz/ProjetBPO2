@@ -1,4 +1,4 @@
-package Echiquier;
+package echiquier;
 
 import joueur.IA;
 import joueur.Joueur;

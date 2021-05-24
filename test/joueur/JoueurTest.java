@@ -1,8 +1,8 @@
 package joueur;
 
-import Echiquier.FabriquePlateau;
+import echiquier.FabriquePlateau;
 import utilitaire.Coords;
-import Echiquier.Plateau;
+import echiquier.Plateau;
 import org.junit.jupiter.api.Test;
 import piece.Couleur;
 import utilitaire.PaireCoords;

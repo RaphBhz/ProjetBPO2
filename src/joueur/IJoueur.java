@@ -1,6 +1,6 @@
 package joueur;
 
-import Echiquier.Plateau;
+import echiquier.Plateau;
 import piece.Couleur;
 import utilitaire.PaireCoords;
 

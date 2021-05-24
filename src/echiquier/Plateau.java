@@ -1,6 +1,6 @@
-package Echiquier;
+package echiquier;
 
-import Echec.IPiece;
+import echec.IPiece;
 import joueur.IJoueur;
 import piece.*;
 import utilitaire.Coords;
