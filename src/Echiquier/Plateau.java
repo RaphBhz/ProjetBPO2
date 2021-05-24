@@ -1,7 +1,7 @@
 package Echiquier;
 
 import Echec.IPiece;
-import joueur.IPlayer;
+import joueur.IJoueur;
 import piece.*;
 import utilitaire.Coords;
 import utilitaire.PaireCoords;
@@ -17,13 +17,13 @@ public class Plateau {
     public static final int MIN = 1;
     public static final int MAX = 8;
 
-    private IPlayer joueurs[] = new IPlayer[2];
+    private IJoueur joueurs[] = new IJoueur[2];
 
     private ArrayList<IPiece> pieces = new ArrayList<>();
     private int gagnant = -1;
     private int nbTour = 0;
 
-    public Plateau(IPlayer joueur1, IPlayer joueur2) {
+    public Plateau(IJoueur joueur1, IJoueur joueur2) {
         joueurs[0] = joueur1;
         joueurs[1] = joueur2;
 
@@ -35,7 +35,12 @@ public class Plateau {
 
     }
 
-    public IPiece getPieceAtCoords(Coords coords) {
+    /**
+     * Permet de récupérer une pièce aux coordonnées données
+     * @param coords les coordonnées de la case pour laquelle on cherche la pièce
+     * @return La pièce aux coordonnées données ou null s'il n'y a pas de pièce aux coordonnées données
+     */
+    private IPiece getPieceAtCoords(Coords coords) {
 
         for (IPiece p : pieces)
             if (p.isPieceInCoords(coords))
@@ -43,16 +48,19 @@ public class Plateau {
         return null;
     }
 
+    /**
+     * Détermine si une case de l'échiquier possède une pièce
+     * @param coords les coordonnées de la case pour laquelle on veut savoir s'il y a une pièce
+     * @return true s'il y a une pièce sur la case, false dans le cas contraire
+     */
     public boolean isCaseOccupee(Coords coords) {
 
         return getPieceAtCoords(coords) != null;
     }
 
-    // check si le roi est en échec, seul les mouvement pour le sortir de cette situation sont possibles.
-
     /**
      * Permet de jouer un coup
-     * @return Une string du déplacement effectué ou bien une erreur
+     * @return Les coordonnées du coup joué
      */
     public PaireCoords play(){
 
@@ -134,6 +142,11 @@ public class Plateau {
         return null;
     }
 
+    /**
+     * Détermine si le coup précisé à travers la paire de coordonnées est jouable
+     * @param paireCoords Les coordonnées du coup
+     * @return true si le coup est jouable, false dans le cas contraire
+     */
     private boolean canCoordsBePlayed(PaireCoords paireCoords) {
         System.out.println("Coords Départ" + paireCoords.getCoordsDepart());
         System.out.println("Coords Fin" + paireCoords.getCoordsFin());
@@ -148,7 +161,7 @@ public class Plateau {
             return false;
         }
 
-        if (!canPiecePlayCoords(paireCoords)) { // toute la logique de la pièce se fait ici
+        if (!getPieceAtCoords(paireCoords.getCoordsDepart()).peutAllerEn(paireCoords.getCoordsFin(), this)) { // toute la logique de la pièce se fait ici
             System.out.println("canCoordsBePlayed Erreur 3");
             return false;
         }
@@ -163,13 +176,19 @@ public class Plateau {
         }
 
 
-        return !verifDeplacementNeMetPasEnEchec(paireCoords, getPieceAtCoords(paireCoords.getCoordsDepart()));
+        return !simulateToCheckForEchec(paireCoords, getPieceAtCoords(paireCoords.getCoordsDepart()));
     }
 
     // Faire le déplacement de la pièce pour vérifier que ce déplacement ne mette pas le roi en échec
     // Enlever le roi pour voir si une pièce peut mettre en échec le roi // Plutôt le setpos -> fait au-dessus
 
-    private boolean verifDeplacementNeMetPasEnEchec(PaireCoords paireCoords, IPiece pieceDeplacee){
+    /**
+     * Simule le coup afin de déterminer si le roi du joueur n'est pas mis en échec par le coup qu'il veut jouer
+     * @param paireCoords Les coordonnées du coup
+     * @param pieceDeplacee La pièce du coup du joueur
+     * @return true si le coup met le roi en échec, false dans le cas contraire
+     */
+    private boolean simulateToCheckForEchec(PaireCoords paireCoords, IPiece pieceDeplacee){
         IPiece pieceDeleted = null;
         boolean echec = false;
 
@@ -196,12 +215,10 @@ public class Plateau {
         return echec;
     }
 
-
-    public boolean canPiecePlayCoords(PaireCoords paireCoords){
-        IPiece piece = getPieceAtCoords(paireCoords.getCoordsDepart());
-        return piece.peutAllerEn(paireCoords.getCoordsFin(), this);
-    }
-
+    /**
+     * Permet de récupérer l'échiquier avec ses pièces
+     * @return L'échiquier sous forme d'une string
+     */
     @Override
     public String toString() {
         StringBuilder sB = new StringBuilder();
@@ -232,21 +249,30 @@ public class Plateau {
         return sB.toString();
     }
 
-
+    /**
+     * Détermine si la partie est finie ou non
+     * @return true si la partie est finie, false dans le cas contraire
+     */
     public boolean gagnantExistant() {
         return gagnant != -1;
     }
 
-    public void removePiece(IPiece piece){
-        this.pieces.remove(piece);
-    }
-
+    /**
+     * Récupère aléatoirement un coup possible pour un certain joueur
+     * @param couleur La couleur du joueur pour lequel on veut trouver un coup possible
+     * @return Un coup possible ou null s'il n'y en a aucun
+     */
     public PaireCoords getOneCoupPossible(Couleur couleur){
         Random random = new Random();
         ArrayList<PaireCoords> allCoups = getAllCoupPossible(couleur);
         return allCoups.get(random.nextInt(allCoups.size()));
     }
 
+    /**
+     * Permet de récupérer tous les coups possibles d'un joueur
+     * @param couleur La couleur du joueur pour lequel on veut trouver un coup possible
+     * @return Une array list de tous les coups possibles
+     */
     private ArrayList<PaireCoords> getAllCoupPossible(Couleur couleur){
         ArrayList<PaireCoords> tabCoordsPossibles = new ArrayList<>();
         for (IPiece piece : pieces) {
@@ -257,6 +283,11 @@ public class Plateau {
         return tabCoordsPossibles;
     }
 
+    /**
+     * Permet de récupérer tous les coups possibles d'une pièce
+     * @param piece La pièce pour laquelle on cherche tous les coups possibles
+     * @return Une array list de tous les coups possibles de la pièce
+     */
     private ArrayList<PaireCoords> getAllCoupFromOnePiece(IPiece piece){
         ArrayList<PaireCoords> tabCoords = new ArrayList<>();
         for (int i = MIN; i <= MAX; i++) {

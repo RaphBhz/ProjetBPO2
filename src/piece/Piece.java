@@ -2,7 +2,6 @@ package piece;
 
 import Echec.IPiece;
 import utilitaire.Coords;
-import Echiquier.Plateau;
 
 public abstract class Piece implements IPiece {
     private Coords coords;
@@ -39,15 +38,9 @@ public abstract class Piece implements IPiece {
 
     public boolean isBlack(){return this.couleur == Couleur.NOIR;}
 
-    public boolean isSameColor(Piece p){
-        return this.couleur == p.couleur;
-    }
-
     @Override
     public void setPos(Coords coords){
         this.coords = coords;
     }
-    
-    @Override
-    public abstract String toString();
+
 }

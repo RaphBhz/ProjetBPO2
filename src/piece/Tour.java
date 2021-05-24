@@ -4,8 +4,11 @@ import utilitaire.Coords;
 import Echiquier.Plateau;
 
 /**
- * Classe représentant la tour
+ * Classe représentant la tour dans un jeu d'échecs
+ * @author LE GAL Florian
+ * @date 17/05/2021
  */
+
 public class Tour extends Piece{
 
     public Tour(Coords coords, Couleur couleur){
