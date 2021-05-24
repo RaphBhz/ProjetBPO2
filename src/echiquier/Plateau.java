@@ -33,6 +33,7 @@ public class Plateau {
         pieces.add(PieceFactory.createPiece(Couleur.NOIR, TypesPieces.ROI, new Coords(8, 4)));
         pieces.add(PieceFactory.createPiece(Couleur.NOIR, TypesPieces.TOUR, new Coords(8, 1)));
         pieces.add(PieceFactory.createPiece(Couleur.BLANC, TypesPieces.TOUR, new Coords(1, 1)));
+        pieces.add(PieceFactory.createPiece(Couleur.BLANC, TypesPieces.TOUR, new Coords(1, 8)));
 
     }
 
@@ -70,8 +71,6 @@ public class Plateau {
         while (!this.canCoordsBePlayed(paireCoords))
             paireCoords = joueurs[nbTour%2].play(this);
 
-
-        //VERIF COULEUR ??
         if (this.isCaseOccupee(paireCoords.getCoordsFin()))
             pieces.remove(getPieceAtCoords(paireCoords.getCoordsFin()));
 
@@ -87,9 +86,10 @@ public class Plateau {
      * Détermine si le roi du tour suivant est en échec et maths et donc si la partie est finie
      */
     private void isGameFinished(){
-        if (isKingCheckedAndMate(joueurs[(nbTour + 1) % 2 ].getCouleur()))
+        if (isKingCheckedAndMate(joueurs[(nbTour + 1) % 2 ].getCouleur())) {
+            System.out.println("ECHEC ET MAT");
             this.gagnant = nbTour % 2;
-
+        }
     }
 
     /**
@@ -154,16 +154,16 @@ public class Plateau {
 
 
         if (!isCaseOccupee(paireCoords.getCoordsDepart())) { // S'il n'y a pas de pièce aux premières coords précisées
-            System.out.println("canCoordsBePlayed Erreur 1");
+            System.out.println("Pas de pièce aux premières coordonnées.");
             return false;
         }
         if (getPieceAtCoords(paireCoords.getCoordsDepart()).getCouleur() != joueurs[nbTour % 2].getCouleur()) { // Si la première pièce précisée n'est pas de la couleur du joueur
-            System.out.println("canCoordsBePlayed Erreur 2");
+            System.out.println("La pièce aux coordonnées de départ n'est pas à vous.");
             return false;
         }
 
         if (!getPieceAtCoords(paireCoords.getCoordsDepart()).peutAllerEn(paireCoords.getCoordsFin(), this)) { // toute la logique de la pièce se fait ici
-            System.out.println("canCoordsBePlayed Erreur 3");
+            System.out.println("Vous ne pouvez pas jouer cette pièce ici.");
             return false;
         }
 
@@ -171,7 +171,7 @@ public class Plateau {
 
         if (isCaseOccupee(paireCoords.getCoordsFin())) {// Si la case d'arrivée possède une pièce, vérifier qu'elle n'est pas de la couleur du joueur
             if (getPieceAtCoords(paireCoords.getCoordsFin()).getCouleur() == joueurs[nbTour % 2].getCouleur()){
-                System.out.println("canCoordsBePlayed Erreur 5");
+                System.out.println("Vous ne pouvez pas prendre cette pièce.");
                 return false;
             }
         }
@@ -209,9 +209,9 @@ public class Plateau {
             pieces.add(pieceDeleted);
 
         if (echec)
-            System.out.println("Le roi est mis en echec");
+            System.out.println("Le roi est mis en echec.");
         else
-            System.out.println("Le roi n'est pas mis en echec");
+            System.out.println("Le roi n'est pas mis en echec.");
 
         return echec;
     }
@@ -293,11 +293,13 @@ public class Plateau {
         ArrayList<PaireCoords> tabCoords = new ArrayList<>();
         for (int i = MIN; i <= MAX; i++) {
             for (int j = MIN; j <= MAX; j++) {
-                if (piece.peutAllerEn(new Coords(i,j), this))
-                    tabCoords.add(new PaireCoords(new Coords(piece.getCoords()), new Coords(i,j)));
-
+                if (piece.peutAllerEn(new Coords(i,j), this)) {
+                    nbTour++;
+                    if(!(simulateToCheckForEchec(new PaireCoords(new Coords(piece.getCoords()), new Coords(i,j)), piece)))
+                        tabCoords.add(new PaireCoords(new Coords(piece.getCoords()), new Coords(i, j)));
+                    nbTour--;
+                }
             }
-
         }
         return tabCoords;
     }

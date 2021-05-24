@@ -12,7 +12,7 @@ public class Coords {
      * Le x et y des coordonnées
      */
     private int ligne, colonne;
-    private static int MIN = 1, MAX = 8;
+    private static final int MIN = 1, MAX = 8;
 
     /**
      * Le constructeur principal d'une coordonnée
@@ -54,7 +54,7 @@ public class Coords {
      * @return true si la coordonnée est dans les limites de l'échiquier, false dans le cas contraire
      */
     public boolean isOnBoard(){
-        return colonne > 0 && colonne < 9 && ligne < 9 && ligne > 0;
+        return colonne > MIN - 1 && colonne < MAX + 1 && ligne < MAX + 1 && ligne > MIN - 1;
     }
 
     /**
