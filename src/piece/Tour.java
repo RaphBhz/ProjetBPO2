@@ -5,7 +5,7 @@ import echiquier.Plateau;
 
 /**
  * Classe représentant la tour dans un jeu d'échecs
- * @author LE GAL Florian
+ * @author LE GAL Florian, BEN FRAJ Ayoub, BOUCHEZ Raphaël
  * @date 17/05/2021
  */
 

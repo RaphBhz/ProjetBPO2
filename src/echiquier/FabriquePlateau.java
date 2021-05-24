@@ -5,7 +5,7 @@ import joueur.Joueur;
 import piece.Couleur;
 
 /**
- * @author LE GAL Florian
+ * @author LE GAL Florian, BEN FRAJ Ayoub, BOUCHEZ Raphaël
  * @date 10/05/2021
  */
 public class FabriquePlateau {

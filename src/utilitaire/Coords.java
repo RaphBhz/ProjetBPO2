@@ -4,7 +4,7 @@ import echiquier.Plateau;
 
 /**
  * Classe utilitaire permettant de représenter des coordonnées plus facilement. Un objet de cette classe est imuable
- * @author LE GAL Florian
+ * @author LE GAL Florian, BEN FRAJ Ayoub, BOUCHEZ Raphaël
  * @date 10/05/2021
  */
 public class Coords {

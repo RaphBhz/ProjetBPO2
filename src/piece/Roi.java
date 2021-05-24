@@ -5,7 +5,7 @@ import echiquier.Plateau;
 
 /**
  * Classe représentant le roi dans un jeu d'échecs
- * @author LE GAL Florian
+ * @author LE GAL Florian, BEN FRAJ Ayoub, BOUCHEZ Raphaël
  * @date 27/04/2021
  */
 

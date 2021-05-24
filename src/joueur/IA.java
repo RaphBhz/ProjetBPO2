@@ -6,7 +6,7 @@ import utilitaire.PaireCoords;
 
 /**
  * Cette classe représente un joueur robot
- * @author LE GAL Florian
+ * @author LE GAL Florian, BEN FRAJ Ayoub, BOUCHEZ Raphaël
  * @date 10/05/2021
  */
 

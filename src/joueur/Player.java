@@ -4,7 +4,7 @@ import echec.IJoueur;
 import piece.Couleur;
 
 /**
- * @author LE GAL Florian
+ * @author LE GAL Florian, BEN FRAJ Ayoub, BOUCHEZ Raphaël
  * @date 19/05/2021
  */
 public abstract class Player implements IJoueur {

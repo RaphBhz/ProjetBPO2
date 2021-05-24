@@ -5,7 +5,7 @@ import echiquier.Plateau;
 import piece.Couleur;
 
 /**
- * @author LE GAL Florian
+ * @author LE GAL Florian, BEN FRAJ Ayoub, BOUCHEZ Raphaël
  * @date 27/04/2021
  */
 public interface IPiece {

@@ -11,7 +11,7 @@ import java.util.Random;
 
 /**
  * Classe représentant un échiquier
- * @author LE GAL Florian
+ * @author LE GAL Florian, BEN FRAJ Ayoub, BOUCHEZ Raphaël
  * @date 27/04/2021
  */
 public class Plateau {

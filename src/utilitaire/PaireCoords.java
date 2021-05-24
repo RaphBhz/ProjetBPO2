@@ -3,7 +3,7 @@ package utilitaire;
 /**
  * Classe utilitaire permettant de représenter une paire de coordonnées plus facilement.
  * Elle permet de représenter un coup. Un objet de cette classe est imuable
- * @author LE GAL Florian
+ * @author LE GAL Florian, BEN FRAJ Ayoub, BOUCHEZ Raphaël
  * @date 19/05/2021
  */
 public class PaireCoords {
