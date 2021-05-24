@@ -1,6 +1,7 @@
 package Echiquier;
 
 import org.junit.jupiter.api.Test;
+import piece.Couleur;
 import utilitaire.Coords;
 import utilitaire.PaireCoords;
 
@@ -36,9 +37,34 @@ class PlateauTest {
     }
 
     @Test
+    void testToString() {
+        StringBuilder expected = new StringBuilder();
+        expected.append("    a   b   c   d   e   f   g   h\n");
+        expected.append("   --- --- --- --- --- --- --- ---\n");
+        expected.append("8 | [] |   |   | r |   |   |   |   | 8\n");
+        expected.append("   --- --- --- --- --- --- --- ---\n");
+        expected.append("7 |   |   |   |   |   |   |   |   | 7\n");
+        expected.append("   --- --- --- --- --- --- --- ---\n");
+        expected.append("6 |   |   |   |   |   |   |   |   | 6\n");
+        expected.append("   --- --- --- --- --- --- --- ---\n");
+        expected.append("5 |   |   |   |   |   |   |   |   | 5\n");
+        expected.append("   --- --- --- --- --- --- --- ---\n");
+        expected.append("4 |   |   |   |   |   |   |   |   | 4\n");
+        expected.append("   --- --- --- --- --- --- --- ---\n");
+        expected.append("3 |   |   |   |   |   |   |   |   | 3\n");
+        expected.append("   --- --- --- --- --- --- --- ---\n");
+        expected.append("2 |   |   |   |   |   |   |   |   | 2\n");
+        expected.append("   --- --- --- --- --- --- --- ---\n");
+        expected.append("1 | T |   |   |   | R |   |   |   | 1\n");
+        expected.append("   --- --- --- --- --- --- --- ---\n");
+        expected.append("    a   b   c   d   e   f   g   h\n");
+        Plateau pl = FabriquePlateau.createPlateau("1");
+//        assertEquals(expected, pl);
+    }
+
+    @Test
     void gagnantExistant() {
         Plateau pl = FabriquePlateau.createPlateau("1");
         assertFalse(pl.gagnantExistant());
     }
-
 }
