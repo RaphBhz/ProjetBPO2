@@ -1,5 +1,8 @@
 package piece;
 
+import joueur.Joueur;
+import utilitaire.Coords;
+import Echiquier.Plateau;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,5 +27,16 @@ class RoiTest {
 
     @Test
     void testToString() {
+    }
+
+    @Test
+    void canMove() {
+        Plateau pl = new Plateau(new Joueur(Couleur.BLANC), new Joueur(Couleur.NOIR));
+        Roi roi = new Roi(new Coords(5,5), Couleur.BLANC);
+        assertTrue(roi.canMove(pl));
+        Tour tour1 = new Tour(new Coords(5,8), Couleur.BLANC);
+        Tour tour2 = new Tour(new Coords(5,7), Couleur.BLANC);
+        Tour tour3 = new Tour(new Coords(5,9), Couleur.BLANC);
+//        assertFalse(roi.canMove(pl)); // --- BUG
     }
 }

@@ -1,7 +1,7 @@
 package piece;
 
 import Echec.IPiece;
-import Echiquier.Coords;
+import utilitaire.Coords;
 
 /**
  * @author LE GAL Florian
@@ -17,4 +17,5 @@ public class PieceFactory {
         }
         return null;
     }
+
 }

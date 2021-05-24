@@ -1,4 +1,4 @@
-package Echiquier;
+package utilitaire;
 
 /**
  * @author LE GAL Florian
@@ -11,6 +11,10 @@ public class Coords {
         this.colonne = colonne;
     }
 
+    public Coords(Coords coords){
+        this(coords.ligne, coords.colonne);
+    }
+
     public int getColonne() {
         return colonne;
     }
@@ -19,8 +23,8 @@ public class Coords {
         return ligne;
     }
 
-    public boolean isNotOnBoard(){
-        return colonne > 8 || colonne < 1 || ligne > 8 || ligne < 1;
+    public boolean isOnBoard(){
+        return colonne > 0 && colonne < 9 && ligne < 9 && ligne > 0;
     }
 
     public boolean equals(Coords coords) {
@@ -39,4 +43,8 @@ public class Coords {
                 '}';
     }
 
+    public void setCoords(int ligne, int colonne) {
+        this.ligne = ligne;
+        this.colonne = colonne;
+    }
 }

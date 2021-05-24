@@ -1,7 +1,7 @@
 package piece;
 
 import Echec.IPiece;
-import Echiquier.Coords;
+import utilitaire.Coords;
 import Echiquier.Plateau;
 
 public abstract class Piece implements IPiece {
@@ -18,17 +18,16 @@ public abstract class Piece implements IPiece {
         return this.coords.equals(coords);
     }
 
+    @Override
     public Coords getCoords(){return this.coords;}
 
     public boolean coupLegal(Coords newCoords){
         if (this.coords.equals(newCoords))
             return false;
 
-        return !newCoords.isNotOnBoard();
+        return newCoords.isOnBoard();
 
     }
-    @Override
-    public abstract boolean peutAllerEn(Coords coords, Plateau pl);
 
     @Override
     public boolean craintEchec() {
@@ -36,12 +35,13 @@ public abstract class Piece implements IPiece {
     }
 
     @Override
-    public abstract boolean menace(Coords coords);
-
-    @Override
     public Couleur getCouleur(){ return this.couleur; }
 
     public boolean isBlack(){return this.couleur == Couleur.NOIR;}
+
+    public boolean isSameColor(Piece p){
+        return this.couleur == p.couleur;
+    }
 
     @Override
     public void setPos(Coords coords){
@@ -50,14 +50,4 @@ public abstract class Piece implements IPiece {
     
     @Override
     public abstract String toString();
-
-    @Override
-    public void die(Plateau p, Piece dyingPiece, Coords dyingPieceCoords){///////////////////////
-
-    }
-
-    @Override
-    public void attack(Piece attacker, Piece attacked){
-        if(attacker.coords == attacked.coords);///////////////////
-    }
 }
