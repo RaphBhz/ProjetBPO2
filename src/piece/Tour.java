@@ -3,92 +3,79 @@ package piece;
 import utilitaire.Coords;
 import Echiquier.Plateau;
 
+/**
+ * Classe représentant la tour
+ */
 public class Tour extends Piece{
 
     public Tour(Coords coords, Couleur couleur){
         super(coords, couleur);
     }
 
-
     @Override
     public boolean peutAllerEn(Coords newCoords, Plateau pl) {
 
         Coords currentCoords = this.getCoords();
-        // check si déplacement est vertical
-        if (currentCoords.getColonne() == newCoords.getColonne() &&
-            currentCoords.getLigne() != newCoords.getLigne()) {
-            if (currentCoords.getLigne() > newCoords.getLigne())
-                return checkAllCoordsUnder(currentCoords.getLigne(), newCoords.getLigne(), pl);
-            else
-                return checkAllCoordsUpper(currentCoords.getLigne(), newCoords.getLigne(), pl);
-        }
-        else if ((currentCoords.getColonne() != newCoords.getColonne() &&
-                currentCoords.getLigne() == newCoords.getLigne())) {
-
-            if (currentCoords.getColonne() > newCoords.getColonne())
-                return checkAllCoordsRight(currentCoords.getColonne(), newCoords.getColonne(), pl);
-            else
-                return checkAllCoordsLeft(currentCoords.getColonne(), newCoords.getColonne(), pl);
-        }
-        else
+        if (!coupLegal(newCoords))
             return false;
-    }
 
-    private boolean checkAllCoordsUnder(int debut, int fin, Plateau pl){
-        for (int i = debut - 1; i>=fin; i--){
-            if(pl.isCaseOccupee(new Coords(i, this.getCoords().getColonne())))
-                return i == fin &&
-                        pl.getPieceAtCoords(new Coords(i, this.getCoords().getColonne())).getCouleur() != this.getCouleur();
-        }
+        if (newCoords.getColonne() != currentCoords.getColonne() && newCoords.getLigne() != currentCoords.getLigne())
+            return false;
+
+        if (newCoords.getColonne() != currentCoords.getColonne())
+            return checkCol(newCoords, pl, currentCoords);
+
+        if (newCoords.getLigne() != currentCoords.getLigne())
+            return checkLigne(newCoords, pl, currentCoords);
+
         return true;
     }
 
-    private boolean checkAllCoordsLeft(int debut, int fin, Plateau pl){
-        for (int i = debut - 1; i>=fin; i--){
-            if(pl.isCaseOccupee(new Coords(this.getCoords().getLigne(), i)))
-                return i == fin &&
-                        pl.getPieceAtCoords(new Coords(this.getCoords().getLigne(), i)).getCouleur() != this.getCouleur();
-        }
+    /**
+     * Détermine si une tour peut effectuer un déplacement horizontal ou non
+     * @param newCoords Les nouvelles coordonnées de la tour
+     * @param pl Le plateau sur lequel la tour se situe
+     * @param currentCoords Les actuelles coordonnées de la tour
+     * @return true si la tour peut se déplacer jusqu'à la nouvelle colonne ou false dans le cas contraire
+     */
+    private boolean checkCol(Coords newCoords, Plateau pl, Coords currentCoords){
+        int deplacement = 1;
+
+        if(newCoords.getColonne() < currentCoords.getColonne())
+            deplacement = -1;
+
+        for (int i = currentCoords.getColonne() + deplacement; i<newCoords.getColonne(); i+= deplacement)
+            if (pl.isCaseOccupee(new Coords(currentCoords.getLigne(), i)))
+                return false;
+
         return true;
+
     }
 
-    private boolean checkAllCoordsUpper(int debut, int fin, Plateau pl){
-        for (int i = debut + 1; i<=fin; i++){
-            if(pl.isCaseOccupee(new Coords(i, this.getCoords().getColonne() )))
-                return i == fin &&
-                        pl.getPieceAtCoords(new Coords(i, this.getCoords().getColonne())).getCouleur() != this.getCouleur();
-        }
-        return true;
-    }
+    /**
+     * Détermine si une tour peut effectuer un déplacement vertical ou non
+     * @param newCoords Les nouvelles coordonnées de la tour
+     * @param pl Le plateau sur lequel la tour se situe
+     * @param currentCoords Les actuelles coordonnées de la tour
+     * @return true si la tour peut se déplacer jusqu'à la nouvelle ligne ou false dans le cas contraire
+     */
+    private boolean checkLigne(Coords newCoords, Plateau pl, Coords currentCoords){
+        int deplacement = 1;
 
-    private boolean checkAllCoordsRight(int debut, int fin, Plateau pl){
-        for (int i = debut + 1; i<=fin; i++){
-            if(pl.isCaseOccupee(new Coords(this.getCoords().getLigne(), i)))
-                return i == fin &&
-                        pl.getPieceAtCoords(new Coords(this.getCoords().getLigne(), i)).getCouleur() != this.getCouleur();
-        }
-        return true;
-    }
+        if(newCoords.getLigne() < currentCoords.getLigne())
+            deplacement = -1;
+        for (int i = currentCoords.getLigne() + deplacement; i<newCoords.getColonne(); i+= deplacement)
+            if (pl.isCaseOccupee(new Coords(i, currentCoords.getColonne())))
+                return false;
 
-    private boolean checkAllCoordsVertical(int debut, int fin, Plateau pl, int dir){
-        for (int i = debut + dir; i<=fin; i = i + dir){
-            if(pl.isCaseOccupee(new Coords(i, this.getCoords().getColonne())))
-                return i == fin &&
-                        pl.getPieceAtCoords(new Coords(i, this.getCoords().getColonne())).getCouleur() != this.getCouleur();
-        }
-        return true;
-    }
-
-    private boolean checkAllCoordsHorizontal(int debut, int fin, Plateau pl, int dir){
-        for (int i = debut + dir; i<=fin; i = i + dir){
-            if(pl.isCaseOccupee(new Coords(this.getCoords().getLigne(), i)))
-                return i == fin &&
-                        pl.getPieceAtCoords(new Coords(this.getCoords().getLigne(), i)).getCouleur() != this.getCouleur();
-        }
         return true;
     }
 
 
+    /**
+     * Méthode donnant la lettre de la pièce selon le sujet
+     * @return t si la pièce est noire ou T si elle est noire
+     */
     @Override
     public String toString() {
         return isBlack() ? "t" : "T";
