@@ -28,16 +28,6 @@ public abstract class Piece implements IPiece {
         return newCoords.isOnBoard();
 
     }
-    @Override
-    public boolean peutAllerEn(Coords coords, Plateau pl){
-        //Vérif coup pas immobile + Vérif coup dans plateau
-        if(!this.coupLegal(coords)){
-            System.out.println("peutAllerEn : ERR2: LE COUP N'EST PAS LEGAL");
-            return false;
-
-        }
-        return true;
-    }
 
     @Override
     public boolean craintEchec() {

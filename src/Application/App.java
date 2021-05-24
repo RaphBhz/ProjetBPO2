@@ -1,14 +1,10 @@
 package Application;
 
-import Echec.IPiece;
-import utilitaire.Coords;
+
 import Echiquier.FabriquePlateau;
 import Echiquier.Plateau;
-import joueur.Joueur;
-import piece.Couleur;
 import utilitaire.PaireCoords;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**

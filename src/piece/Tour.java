@@ -44,10 +44,10 @@ public class Tour extends Piece{
         if(newCoords.getColonne() < currentCoords.getColonne())
             deplacement = -1;
 
-        for (int i = currentCoords.getColonne() + deplacement; i<newCoords.getColonne(); i+= deplacement)
+        for (int i = currentCoords.getColonne() + deplacement; i!=newCoords.getColonne(); i+= deplacement) {
             if (pl.isCaseOccupee(new Coords(currentCoords.getLigne(), i)))
                 return false;
-
+        }
         return true;
 
     }
@@ -64,10 +64,10 @@ public class Tour extends Piece{
 
         if(newCoords.getLigne() < currentCoords.getLigne())
             deplacement = -1;
-        for (int i = currentCoords.getLigne() + deplacement; i<newCoords.getColonne(); i+= deplacement)
+        for (int i = currentCoords.getLigne() + deplacement; i!=newCoords.getLigne(); i+= deplacement) {
             if (pl.isCaseOccupee(new Coords(i, currentCoords.getColonne())))
                 return false;
-
+        }
         return true;
     }
 

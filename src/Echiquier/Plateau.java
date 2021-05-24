@@ -97,23 +97,6 @@ public class Plateau {
     }
 
     /**
-     * Détermine si le déplacement du roi le met en échec
-     * @param coords les coordonnées du déplacement du roi
-     * @return true si le déplacement met le roi en échec, false dans le cas contraire
-     */
-    private boolean willKingBeChecked(Coords coords){
-        for (IPiece piece : pieces) {
-            if (piece.getCouleur() == joueurs[nbTour % 2].getCouleur())
-                continue;
-
-            if (piece.peutAllerEn(coords, this))
-                return true;
-        }
-
-        return false;
-    }
-
-    /**
      * Détermine si le roi est en échec
      * @param couleur La couleur du roi à check
      * @return true si le roi est en position d'échec, false dans le cas contraire
@@ -152,7 +135,8 @@ public class Plateau {
     }
 
     private boolean canCoordsBePlayed(PaireCoords paireCoords) {
-        System.out.println(paireCoords.getCoordsDepart());
+        System.out.println("Coords Départ" + paireCoords.getCoordsDepart());
+        System.out.println("Coords Fin" + paireCoords.getCoordsFin());
 
 
         if (!isCaseOccupee(paireCoords.getCoordsDepart())) { // S'il n'y a pas de pièce aux premières coords précisées
@@ -164,46 +148,60 @@ public class Plateau {
             return false;
         }
 
-        if (getPieceAtCoords(paireCoords.getCoordsDepart()).craintEchec() && willKingBeChecked(paireCoords.getCoordsFin())) // Check que le roi n'est pas mis en échec
-            return false;
-
-
         if (!canPiecePlayCoords(paireCoords)) { // toute la logique de la pièce se fait ici
             System.out.println("canCoordsBePlayed Erreur 3");
             return false;
         }
-        if (isCaseOccupee(paireCoords.getCoordsFin())) {// Si la case d'arrivée possède une pièce, vérifier qu'elle n'est pas de la couleur du joueur
-            if (getPieceAtCoords(paireCoords.getCoordsFin()).getCouleur() != joueurs[nbTour % 2].getCouleur())
-                return false;
 
-            if (simulateWillKingBeChecked(getPieceAtCoords(paireCoords.getCoordsFin()), paireCoords.getCoordsFin())) // check si le déplacement ne met pas le roi en échec
+
+
+        if (isCaseOccupee(paireCoords.getCoordsFin())) {// Si la case d'arrivée possède une pièce, vérifier qu'elle n'est pas de la couleur du joueur
+            if (getPieceAtCoords(paireCoords.getCoordsFin()).getCouleur() == joueurs[nbTour % 2].getCouleur()){
+                System.out.println("canCoordsBePlayed Erreur 5");
                 return false;
+            }
         }
-        return true;
+
+
+        return !verifDeplacementNeMetPasEnEchec(paireCoords, getPieceAtCoords(paireCoords.getCoordsDepart()));
     }
 
-    /**
-     * Simule la mort d'une pièce afin de check si le roi est en échec
-     * @param piece La pièce à remove
-     * @return true si le roi est en échec, false sinon
-     */
-    private boolean simulateWillKingBeChecked(IPiece piece, Coords coords){
-        pieces.remove(piece);
+    // Faire le déplacement de la pièce pour vérifier que ce déplacement ne mette pas le roi en échec
+    // Enlever le roi pour voir si une pièce peut mettre en échec le roi // Plutôt le setpos -> fait au-dessus
+
+    private boolean verifDeplacementNeMetPasEnEchec(PaireCoords paireCoords, IPiece pieceDeplacee){
+        IPiece pieceDeleted = null;
         boolean echec = false;
 
-        if (willKingBeChecked(coords))
+        if (isCaseOccupee(paireCoords.getCoordsFin())) {
+            pieceDeleted = getPieceAtCoords(paireCoords.getCoordsFin());
+            pieces.remove(pieceDeleted);
+        }
+
+        pieceDeplacee.setPos(paireCoords.getCoordsFin());
+
+        if (isKingChecked(joueurs[nbTour%2].getCouleur()))
             echec = true;
 
-        pieces.add(piece);
+        pieceDeplacee.setPos(paireCoords.getCoordsDepart());
+
+        if (pieceDeleted != null)
+            pieces.add(pieceDeleted);
+
+        if (echec)
+            System.out.println("Le roi est mis en echec");
+        else
+            System.out.println("Le roi n'est pas mis en echec");
 
         return echec;
     }
 
+
     public boolean canPiecePlayCoords(PaireCoords paireCoords){
         IPiece piece = getPieceAtCoords(paireCoords.getCoordsDepart());
         return piece.peutAllerEn(paireCoords.getCoordsFin(), this);
-
     }
+
     @Override
     public String toString() {
         StringBuilder sB = new StringBuilder();

@@ -14,11 +14,11 @@ public class Roi extends Piece{
     }
 
     @Override
-    public boolean peutAllerEn(Coords coords, Plateau pl) {
+    public boolean peutAllerEn(Coords newCoords, Plateau pl) {
 
         //Vérif coup dans range
-        return super.peutAllerEn(coords, pl) && Math.abs(coords.getColonne() - this.getCoords().getColonne()) <= 1
-                && Math.abs(coords.getLigne() - this.getCoords().getLigne()) <= 1;
+        return coupLegal(newCoords) && Math.abs(newCoords.getColonne() - this.getCoords().getColonne()) <= 1
+                && Math.abs(newCoords.getLigne() - this.getCoords().getLigne()) <= 1;
     }
 
     @Override
