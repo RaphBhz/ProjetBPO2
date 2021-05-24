@@ -90,6 +90,17 @@ public class Plateau {
             System.out.println("ECHEC ET MAT");
             this.gagnant = nbTour % 2;
         }
+        if (isGameTied()) {
+            System.out.println("Egalité");
+            this.gagnant = 0;
+        }
+    }
+
+    private boolean isGameTied(){
+        for(IPiece p : pieces)
+            if(!p.craintEchec())
+                return false;
+            return true;
     }
 
     /**
@@ -207,6 +218,9 @@ public class Plateau {
 
         if (pieceDeleted != null)
             pieces.add(pieceDeleted);
+
+        if (echec)
+            System.out.println("Coup illégal : le roi est mis en echec.");
 
         return echec;
     }
