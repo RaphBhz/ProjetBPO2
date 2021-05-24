@@ -20,6 +20,7 @@ public abstract class Piece implements IPiece {
     @Override
     public Coords getCoords(){return this.coords;}
 
+    @Override
     public boolean coupLegal(Coords newCoords){
         if (this.coords.equals(newCoords))
             return false;

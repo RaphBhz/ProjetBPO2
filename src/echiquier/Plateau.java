@@ -1,7 +1,7 @@
 package echiquier;
 
 import echec.IPiece;
-import joueur.IJoueur;
+import echec.IJoueur;
 import piece.*;
 import utilitaire.Coords;
 import utilitaire.PaireCoords;
@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
+ * Classe représentant un échiquier
  * @author LE GAL Florian
  * @date 27/04/2021
  */

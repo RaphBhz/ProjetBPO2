@@ -1,4 +1,4 @@
-package joueur;
+package echec;
 
 import echiquier.Plateau;
 import piece.Couleur;

@@ -1,5 +1,6 @@
 package joueur;
 
+import echec.IJoueur;
 import piece.Couleur;
 
 /**
