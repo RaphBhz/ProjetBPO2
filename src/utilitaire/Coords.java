@@ -54,7 +54,7 @@ public class Coords {
      * @return true si la coordonnée est dans les limites de l'échiquier, false dans le cas contraire
      */
     public boolean isOnBoard(){
-        return colonne > MIN-1 && colonne <= MAX-1 && ligne < MAX-1 && ligne > MIN-1;
+        return colonne > 0 && colonne < 9 && ligne < 9 && ligne > 0;
     }
 
     /**
