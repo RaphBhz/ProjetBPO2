@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class JoueurTest {
 
-
     @Test
     void play() {
         Joueur joueur = new Joueur(Couleur.NOIR);

@@ -6,6 +6,7 @@ import piece.Couleur;
 import piece.Roi;
 import utilitaire.PaireCoords;
 
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -20,17 +21,18 @@ public class Joueur extends Player{
         Scanner sc = new Scanner(System.in);
         String s = sc.nextLine();
 
-        while (!validateInput(s)) {
+        while (!validateInput(s.toLowerCase(Locale.ROOT))) {
             System.out.println("Input invalide");
             s = sc.nextLine();
         }
-        return stringToCoords(s);
+        return stringToCoords(s.toLowerCase(Locale.ROOT));
     }
 
-    public boolean canPlay(Roi roi, Plateau pl){
-        return roi.canMove(pl);
-    }
-
+    /**
+     * Permet de transformer l'input du joueur en coordonnées
+     * @param input La string contenant l'input du joueur
+     * @return Les coordonnées du coup
+     */
     private PaireCoords stringToCoords(String input){
 
         Coords firstCoords = new Coords(Integer.parseInt(String.valueOf(input.charAt(0))),Character.getNumericValue(Character.toLowerCase(input.charAt(1) - 48)));
@@ -38,8 +40,13 @@ public class Joueur extends Player{
         return new PaireCoords(firstCoords, secondCoords);
     }
 
+    /**
+     * Détermine si l'input du joueur est correct
+     * @param input L'input du joueur sous forme d'une string
+     * @return true si l'input est bon, false dans le cas contraire
+     */
     private boolean validateInput(String input) {
-        String s = "[1-8][a-h] [1-8][a-h]"; // Peut être faire en sorte que l'on puisse jouer avec des majs aussi mais du coup il faudra changer stringToCoords
+        String s = "[1-8][a-h] [1-8][a-h]";
         return Pattern.matches(s, input);
     }
 
