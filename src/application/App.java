@@ -28,12 +28,8 @@ public class App {
 
         while (!pl.gagnantExistant()) {
             pl.play();
-            //System.out.println("Pièce déplacée en " + paireCoords.getCoordsFin()); // peut-être utiliser les exceptions et donc faire un try catch
             System.out.println(pl);
-            //break;
         }
-
         System.out.println(pl.gagnantToString());
-
     }
 }
