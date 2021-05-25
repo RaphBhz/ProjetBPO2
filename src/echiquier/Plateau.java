@@ -24,6 +24,11 @@ public class Plateau {
     private int gagnant = -1;
     private int nbTour = 0;
 
+    /**
+     * Constructeur du plateau
+     * @param joueur1 Le joueur blanc
+     * @param joueur2 Le joueur noir
+     */
     public Plateau(IJoueur joueur1, IJoueur joueur2) {
         joueurs[0] = joueur1;
         joueurs[1] = joueur2;
@@ -32,7 +37,10 @@ public class Plateau {
             addAllPiecesFromType(type);
     }
 
-
+    /**
+     * Permet d'ajouter toutes les pièces au plateau
+     * @param type Le type de la pièce
+     */
     private void addAllPiecesFromType(TypesPieces type){
         if (type == TypesPieces.ROI) {
             pieces.add(FabriquePiece.createPiece(Couleur.BLANC, TypesPieces.ROI, new Coords(1,5)));
@@ -46,6 +54,11 @@ public class Plateau {
         }
     }
 
+    /**
+     * Ajoute une pièce à une coordonnée libre et qui ne met pas en échec les rois
+     * @param type Le type de la pièce
+     * @param couleur La couleur de la pièce
+     */
     private void addPieceAtFreeCoords(TypesPieces type, Couleur couleur){
         Random rdm = new Random();
         int x, y;
@@ -134,6 +147,10 @@ public class Plateau {
 
     }
 
+    /**
+     * Permet de détecter l'égalité
+     * @return true si égalite, false dans le cas contraire
+     */
     private boolean isGameTied(){
 
         if(!isKingChecked(joueurs[nbTour%2].getCouleur()) && getAllCoupFromOnePiece(getKing(joueurs[nbTour%2].getCouleur())).size() == 0) {
@@ -154,7 +171,7 @@ public class Plateau {
     }
 
     /**
-     *
+     * Permet de savoir si le roi est en echec et maths
      * @param couleur La couleur du roi à check
      * @return true si le roi est échec et maths, false dans le cas contraire
      */
@@ -233,8 +250,6 @@ public class Plateau {
         return !simulateToCheckForEchec(paireCoords, getPieceAtCoords(paireCoords.getCoordsDepart()));
     }
 
-    // Faire le déplacement de la pièce pour vérifier que ce déplacement ne mette pas le roi en échec
-    // Enlever le roi pour voir si une pièce peut mettre en échec le roi // Plutôt le setpos -> fait au-dessus
 
     /**
      * Simule le coup afin de déterminer si le roi du joueur n'est pas mis en échec par le coup qu'il veut jouer
@@ -265,6 +280,10 @@ public class Plateau {
         return echec;
     }
 
+    /**
+     * Retourne la string du gagnant
+     * @return la string du gagnant
+     */
     public String gagnantToString(){
         if (this.gagnant == -2)
             return "Egalité, aucun gagnant";
