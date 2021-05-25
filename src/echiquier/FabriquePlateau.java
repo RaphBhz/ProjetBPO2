@@ -9,6 +9,11 @@ import piece.Couleur;
  * @date 10/05/2021
  */
 public class FabriquePlateau {
+    /**
+     * Fabrique de plateau avec ses joueurs
+     * @param choice "1" = Joueur contre Joueur | "2" = Joueur contre IA | "*" IA contre IA
+     * @return Un plateau avec ses joueurs
+     */
     public static Plateau createPlateau(String choice){
         switch (choice){
             case "1":
