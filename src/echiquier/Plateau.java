@@ -145,11 +145,12 @@ public class Plateau {
     private boolean isGameTied(){
 
         if(!isKingChecked(joueurs[nbTour%2].getCouleur()) && getAllCoupFromOnePiece(getKing(joueurs[nbTour%2].getCouleur())).size() == 0) {
-            for(IPiece p : pieces) {
-                if(!(getAllCoupFromOnePiece(p).size() == 0)){
+            for(int i = 0; i < pieces.size(); i++) {
+                if(!(getAllCoupFromOnePiece(pieces.get(i)).size() == 0)){
                     return false;
                 }
             }
+            System.out.println("PAT");
             return true;
         }
 
