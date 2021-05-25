@@ -11,10 +11,18 @@ public enum TypesPieces {
 
     private final int nbPiece;
 
+    /**
+     * Défini le nombre de pièces sur l'échiquier
+     * @param nbPiece le nombre pièces sur l'échiquier
+     */
     private TypesPieces(int nbPiece){
         this.nbPiece = nbPiece;
     }
 
+    /**
+     * Récupère le nombre de pièces sur l'échiquier
+     * @return le nombre de pièces sur l'échiquier
+     */
     public int getNbPiece(){
         return this.nbPiece;
     }
