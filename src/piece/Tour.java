@@ -15,6 +15,12 @@ public class Tour extends Piece{
         super(coords, couleur);
     }
 
+    /**
+     * Détermine si une pièce peut aller en des coordonnées données pour un plateau donnée
+     * @param newCoords Les nouvelles coordonnées de la tour
+     * @param pl Le plateau sur lequel la pièce se situe
+     * @return
+     */
     @Override
     public boolean peutAllerEn(Coords newCoords, Plateau pl) {
 
