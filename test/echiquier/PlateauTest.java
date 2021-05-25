@@ -1,8 +1,8 @@
 package echiquier;
 
 import org.junit.jupiter.api.Test;
+import piece.Couleur;
 import utilitaire.Coords;
-import utilitaire.PaireCoords;
 
 import java.util.regex.Pattern;
 
@@ -17,15 +17,6 @@ class PlateauTest {
         Coords coords = new Coords(1,5);
         Plateau pl = FabriquePlateau.createPlateau("1");
         assertTrue(pl.isCaseOccupee(coords));
-    }
-
-    @Test
-    void canPiecePlayCoords() {
-        Plateau pl = FabriquePlateau.createPlateau("1");
-        PaireCoords paireCoords1 = new PaireCoords(new Coords(1,5), new Coords(1,6));
-        //assertTrue(pl.canPiecePlayCoords(paireCoords1));
-        PaireCoords paireCoords2 = new PaireCoords(new Coords(1,5), new Coords(5,6));
-        //assertFalse(pl.canPiecePlayCoords(paireCoords2));
     }
 
     @Test
@@ -54,12 +45,19 @@ class PlateauTest {
         expected.append("    a   b   c   d   e   f   g   h\n");
 
         assertTrue(Pattern.matches(expected.toString(), pl.toString()));
-//        assertEquals(expected, pl);
     }
 
     @Test
     void gagnantExistant() {
         Plateau pl = FabriquePlateau.createPlateau("1");
         assertFalse(pl.gagnantExistant());
+    }
+
+    @Test
+    void getOneCoupPossible() {
+        Plateau pl = FabriquePlateau.createPlateau("1");
+        assertNotNull(pl.getOneCoupPossible(Couleur.BLANC));
+        assertNull(pl.getOneCoupPossible(Couleur.NOIR));
+
     }
 }
