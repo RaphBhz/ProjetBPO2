@@ -20,10 +20,6 @@ class PlateauTest {
     }
 
     @Test
-    void play() {
-    }
-
-    @Test
     void canPiecePlayCoords() {
         Plateau pl = FabriquePlateau.createPlateau("1");
         PaireCoords paireCoords1 = new PaireCoords(new Coords(1,5), new Coords(1,6));
@@ -56,8 +52,7 @@ class PlateauTest {
         expected.append("1 \\| [T\\s] \\| [T\\s] \\| [T\\s] \\| [T\\s] \\| R \\| [T\\s] \\| [T\\s] \\| [T\\s] \\| 1\n");
         expected.append("   --- --- --- --- --- --- --- ---\n");
         expected.append("    a   b   c   d   e   f   g   h\n");
-        System.out.println(expected.toString());
-        System.out.println(pl.toString());
+
         assertTrue(Pattern.matches(expected.toString(), pl.toString()));
 //        assertEquals(expected, pl);
     }
