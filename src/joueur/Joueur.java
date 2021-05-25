@@ -11,6 +11,10 @@ import java.util.regex.Pattern;
 
 public class Joueur extends Player{
 
+    /**
+     * Constructeur du joueur
+     * @param couleur la couleur du joueur
+     */
     public Joueur(Couleur couleur){
         super(couleur);
     }

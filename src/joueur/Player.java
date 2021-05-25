@@ -14,7 +14,7 @@ public abstract class Player implements IJoueur {
     private Couleur couleur;
 
     /**
-     * Constructeur de la classe
+     * Constructeur du joueur
      * @param couleur La couleur du joueur
      */
     public Player(Couleur couleur){

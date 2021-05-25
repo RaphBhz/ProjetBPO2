@@ -11,6 +11,11 @@ import echiquier.Plateau;
 
 public class Roi extends Piece{
 
+    /**
+     * Constructeur du roi
+     * @param coords coordonnées du roi
+     * @param couleur couleur du roi
+     */
     public Roi(Coords coords, Couleur couleur) {
         super(coords, couleur);
     }

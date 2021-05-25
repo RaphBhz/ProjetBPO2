@@ -7,6 +7,11 @@ public abstract class Piece implements IPiece {
     private Coords coords;
     private final Couleur couleur;
 
+    /**
+     * Constructeur de la pièce
+     * @param coords coordonnées de la pièce
+     * @param couleur couleur de la pièce
+     */
     public Piece(Coords coords, Couleur couleur) {
         this.coords = coords;
         this.couleur = couleur;

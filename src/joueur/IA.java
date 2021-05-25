@@ -12,6 +12,10 @@ import utilitaire.PaireCoords;
 
 public class IA extends Player{
 
+    /**
+     * Constructeur de l'IA
+     * @param couleur la couleur de l'IA
+     */
     public IA(Couleur couleur){
         super(couleur);
     }

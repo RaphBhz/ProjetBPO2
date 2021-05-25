@@ -11,6 +11,11 @@ import echiquier.Plateau;
 
 public class Tour extends Piece{
 
+    /**
+     * Constructeur de la tour
+     * @param coords coordonnées de la tour
+     * @param couleur couleur de la tour
+     */
     public Tour(Coords coords, Couleur couleur){
         super(coords, couleur);
     }
