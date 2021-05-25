@@ -1,4 +1,4 @@
-package piece;
+package echiquier;
 
 /**
  * Cette classe est une énumération des couleurs utilisées dans les échecs

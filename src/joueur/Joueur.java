@@ -2,7 +2,7 @@ package joueur;
 
 import utilitaire.Coords;
 import echiquier.Plateau;
-import piece.Couleur;
+import echiquier.Couleur;
 import utilitaire.PaireCoords;
 
 import java.util.Locale;

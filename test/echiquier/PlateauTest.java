@@ -1,7 +1,6 @@
 package echiquier;
 
 import org.junit.jupiter.api.Test;
-import piece.Couleur;
 import utilitaire.Coords;
 
 import java.util.regex.Pattern;

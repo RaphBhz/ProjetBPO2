@@ -1,7 +1,10 @@
 package piece;
 
 import echec.IPiece;
+import echiquier.Couleur;
+import echiquier.FabriquePiece;
 import echiquier.Plateau;
+import echiquier.TypesPieces;
 import joueur.Joueur;
 import org.junit.jupiter.api.Test;
 import utilitaire.Coords;

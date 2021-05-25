@@ -1,6 +1,7 @@
 package piece;
 
 import echec.IPiece;
+import echiquier.Couleur;
 import org.junit.jupiter.api.Test;
 import utilitaire.Coords;
 

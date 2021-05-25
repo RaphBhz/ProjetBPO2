@@ -4,7 +4,7 @@ import echiquier.FabriquePlateau;
 import utilitaire.Coords;
 import echiquier.Plateau;
 import org.junit.jupiter.api.Test;
-import piece.Couleur;
+import echiquier.Couleur;
 import utilitaire.PaireCoords;
 
 import static org.junit.jupiter.api.Assertions.*;

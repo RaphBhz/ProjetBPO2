@@ -1,6 +1,8 @@
-package piece;
+package echiquier;
 
 import echec.IPiece;
+import piece.Roi;
+import piece.Tour;
 import utilitaire.Coords;
 
 /**

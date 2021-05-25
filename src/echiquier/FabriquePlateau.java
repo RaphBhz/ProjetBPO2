@@ -2,7 +2,6 @@ package echiquier;
 
 import joueur.IA;
 import joueur.Joueur;
-import piece.Couleur;
 
 /**
  * @author LE GAL Florian, BEN FRAJ Ayoub, BOUCHEZ Raphaël

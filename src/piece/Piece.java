@@ -1,6 +1,7 @@
 package piece;
 
 import echec.IPiece;
+import echiquier.Couleur;
 import utilitaire.Coords;
 
 public abstract class Piece implements IPiece {

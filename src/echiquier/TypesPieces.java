@@ -1,4 +1,4 @@
-package piece;
+package echiquier;
 
 /**
  * Enumération représentant les pièces utilisées dans un échiquier

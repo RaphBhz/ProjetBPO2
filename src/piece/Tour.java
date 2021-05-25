@@ -1,5 +1,6 @@
 package piece;
 
+import echiquier.Couleur;
 import utilitaire.Coords;
 import echiquier.Plateau;
 

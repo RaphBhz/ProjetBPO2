@@ -2,7 +2,7 @@ package echec;
 
 import utilitaire.Coords;
 import echiquier.Plateau;
-import piece.Couleur;
+import echiquier.Couleur;
 
 /**
  * @author LE GAL Florian, BEN FRAJ Ayoub, BOUCHEZ Raphaël

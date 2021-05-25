@@ -4,7 +4,7 @@ import echec.IJoueur;
 import echec.IPiece;
 import echiquier.Plateau;
 import org.junit.jupiter.api.Test;
-import piece.Couleur;
+import echiquier.Couleur;
 import piece.Roi;
 import utilitaire.Coords;
 

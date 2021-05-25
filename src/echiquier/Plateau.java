@@ -2,7 +2,6 @@ package echiquier;
 
 import echec.IPiece;
 import echec.IJoueur;
-import piece.*;
 import utilitaire.Coords;
 import utilitaire.PaireCoords;
 
