@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import utilitaire.Coords;
 import utilitaire.PaireCoords;
 
+import java.util.regex.Pattern;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlateauTest {
@@ -12,7 +14,7 @@ class PlateauTest {
 
     @Test
     void isCaseOccupee() {
-        Coords coords = new Coords(8,1);
+        Coords coords = new Coords(1,5);
         Plateau pl = FabriquePlateau.createPlateau("1");
         assertTrue(pl.isCaseOccupee(coords));
     }
@@ -32,27 +34,31 @@ class PlateauTest {
 
     @Test
     void testToString() {
+        Plateau pl = FabriquePlateau.createPlateau("1");
+
         StringBuilder expected = new StringBuilder();
         expected.append("    a   b   c   d   e   f   g   h\n");
         expected.append("   --- --- --- --- --- --- --- ---\n");
-        expected.append("8 | [] |   |   | r |   |   |   |   | 8\n");
+        expected.append("8 \\| [t\\s] \\| [t\\s] \\| [t\\s] \\| r \\| [t\\s] \\| [t\\s] \\| [t\\s] \\| [t\\s] \\| 8\n");
         expected.append("   --- --- --- --- --- --- --- ---\n");
-        expected.append("7 |   |   |   |   |   |   |   |   | 7\n");
+        expected.append("7 \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| 7\n");
         expected.append("   --- --- --- --- --- --- --- ---\n");
-        expected.append("6 |   |   |   |   |   |   |   |   | 6\n");
+        expected.append("6 \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| 6\n");
         expected.append("   --- --- --- --- --- --- --- ---\n");
-        expected.append("5 |   |   |   |   |   |   |   |   | 5\n");
+        expected.append("5 \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| 5\n");
         expected.append("   --- --- --- --- --- --- --- ---\n");
-        expected.append("4 |   |   |   |   |   |   |   |   | 4\n");
+        expected.append("4 \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| 4\n");
         expected.append("   --- --- --- --- --- --- --- ---\n");
-        expected.append("3 |   |   |   |   |   |   |   |   | 3\n");
+        expected.append("3 \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| 3\n");
         expected.append("   --- --- --- --- --- --- --- ---\n");
-        expected.append("2 |   |   |   |   |   |   |   |   | 2\n");
+        expected.append("2 \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| [tT\\s] \\| 2\n");
         expected.append("   --- --- --- --- --- --- --- ---\n");
-        expected.append("1 | T |   |   |   | R |   |   |   | 1\n");
+        expected.append("1 \\| [T\\s] \\| [T\\s] \\| [T\\s] \\| [T\\s] \\| R \\| [T\\s] \\| [T\\s] \\| [T\\s] \\| 1\n");
         expected.append("   --- --- --- --- --- --- --- ---\n");
         expected.append("    a   b   c   d   e   f   g   h\n");
-        Plateau pl = FabriquePlateau.createPlateau("1");
+        System.out.println(expected.toString());
+        System.out.println(pl.toString());
+        assertTrue(Pattern.matches(expected.toString(), pl.toString()));
 //        assertEquals(expected, pl);
     }
 
