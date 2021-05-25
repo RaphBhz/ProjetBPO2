@@ -144,8 +144,14 @@ public class Plateau {
 
     private boolean isGameTied(){
 
-        if(!isKingChecked(joueurs[nbTour%2].getCouleur()) && getAllCoupFromOnePiece(getKing(joueurs[nbTour%2].getCouleur())).size() == 0)
+        if(!isKingChecked(joueurs[nbTour%2].getCouleur()) && getAllCoupFromOnePiece(getKing(joueurs[nbTour%2].getCouleur())).size() == 0) {
+            for(IPiece p : pieces) {
+                if(!(getAllCoupFromOnePiece(p).size() == 0)){
+                    return false;
+                }
+            }
             return true;
+        }
 
         for(IPiece p : pieces)
             if(!p.craintEchec())
