@@ -8,6 +8,11 @@ import utilitaire.Coords;
  * @date 13/05/2021
  */
 public class FabriquePiece {
+    /**
+     * Fabrique une pièce avec ses coordonnées et sa couleur
+     * @param type ROI = créer un roi | TOUR = créer une tour
+     * @return La pièce créée avec ses coordonnées et sa couleur
+     */
     public static IPiece createPiece(Couleur couleur, TypesPieces type, Coords coords){
         switch (type){
             case ROI:

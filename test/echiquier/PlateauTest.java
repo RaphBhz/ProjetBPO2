@@ -35,7 +35,7 @@ class PlateauTest {
         StringBuilder expected = new StringBuilder();
         expected.append("    a   b   c   d   e   f   g   h\n");
         expected.append("   --- --- --- --- --- --- --- ---\n");
-        expected.append("8 | [] |   |   | r |   |   |   |   | 8\n");
+        expected.append("8 |   |   |   | r |   |   |   |   | 8\n");
         expected.append("   --- --- --- --- --- --- --- ---\n");
         expected.append("7 |   |   |   |   |   |   |   |   | 7\n");
         expected.append("   --- --- --- --- --- --- --- ---\n");
@@ -53,7 +53,7 @@ class PlateauTest {
         expected.append("   --- --- --- --- --- --- --- ---\n");
         expected.append("    a   b   c   d   e   f   g   h\n");
         Plateau pl = FabriquePlateau.createPlateau("1");
-//        assertEquals(expected, pl);
+        assertEquals(expected, pl);
     }
 
     @Test
