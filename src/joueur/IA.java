@@ -18,6 +18,7 @@ public class IA extends Player{
 
     @Override
     public PaireCoords play(Plateau pl) {
+        System.out.println("je rentre ici débug");
         PaireCoords coup = pl.getOneCoupPossible(this.getCouleur());
         while(coup == null)
             coup = pl.getOneCoupPossible(this.getCouleur());

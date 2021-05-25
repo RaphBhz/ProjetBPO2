@@ -28,12 +28,52 @@ public class Plateau {
         joueurs[0] = joueur1;
         joueurs[1] = joueur2;
 
+        for (TypesPieces type : TypesPieces.values())
+            addAllPiecesFromType(type);
+    }
 
-        pieces.add(PieceFactory.createPiece(Couleur.BLANC, TypesPieces.ROI, new Coords(1,5)));
-        pieces.add(PieceFactory.createPiece(Couleur.NOIR, TypesPieces.ROI, new Coords(8, 4)));
-        pieces.add(PieceFactory.createPiece(Couleur.NOIR, TypesPieces.TOUR, new Coords(8, 1)));
-        pieces.add(PieceFactory.createPiece(Couleur.BLANC, TypesPieces.TOUR, new Coords(1, 1)));
-        pieces.add(PieceFactory.createPiece(Couleur.BLANC, TypesPieces.TOUR, new Coords(1, 8)));
+
+    private void addAllPiecesFromType(TypesPieces type){
+        System.out.println("t");
+        if (type == TypesPieces.ROI) {
+            System.out.println("tRoi");
+            pieces.add(FabriquePiece.createPiece(Couleur.BLANC, TypesPieces.ROI, new Coords(1,5)));
+            pieces.add(FabriquePiece.createPiece(Couleur.NOIR, TypesPieces.ROI, new Coords(8, 4)));
+            return;
+        }
+
+        for(int i = 0; i<type.getNbPiece(); i++) {
+            addPieceAtFreeCoords(type, Couleur.BLANC);
+            addPieceAtFreeCoords(type, Couleur.NOIR);
+        }
+    }
+
+    private void addPieceAtFreeCoords(TypesPieces type, Couleur couleur){
+        System.out.println("tPiece");
+
+        Random rdm = new Random();
+        int x, y;
+        IPiece piece;
+        boolean checked = true;
+
+        while(checked){
+            x = rdm.nextInt(MAX) + 1;
+            y = rdm.nextInt(MAX) + 1;
+            if(isCaseOccupee(new Coords(x,y)))
+                continue;
+
+            piece = FabriquePiece.createPiece(couleur, type, new Coords(x,y));
+            pieces.add(piece);
+
+            if(isKingChecked(Couleur.NOIR) || isKingChecked(Couleur.BLANC)){
+                pieces.remove(piece);
+                continue;
+            }
+
+            checked = false;
+
+        }
+        System.out.println("tPieceFin");
 
     }
 
@@ -68,16 +108,21 @@ public class Plateau {
 
         PaireCoords paireCoords = joueurs[nbTour%2].play(this);
 
-        while (!this.canCoordsBePlayed(paireCoords))
-            paireCoords = joueurs[nbTour%2].play(this);
+        while (!this.canCoordsBePlayed(paireCoords)) {
+            System.out.println("bloqué ici");
+            paireCoords = joueurs[nbTour % 2].play(this);
+        }
 
-        if (this.isCaseOccupee(paireCoords.getCoordsFin()))
+        if (this.isCaseOccupee(paireCoords.getCoordsFin())) {
+            System.out.println("remove");
             pieces.remove(getPieceAtCoords(paireCoords.getCoordsFin()));
+        }
 
         this.getPieceAtCoords(paireCoords.getCoordsDepart()).setPos(paireCoords.getCoordsFin());
+        this.nbTour++;
+
         this.isGameFinished();
 
-        this.nbTour++;
 
         return paireCoords;
     }
@@ -86,23 +131,27 @@ public class Plateau {
      * Détermine si le roi du tour suivant est en échec et maths et donc si la partie est finie
      */
     private void isGameFinished(){
-        if (isKingCheckedAndMate(joueurs[(nbTour + 1) % 2 ].getCouleur())) {
+        if (isKingCheckedAndMate(joueurs[nbTour % 2 ].getCouleur())) {
             System.out.println("ECHEC ET MAT");
-            this.gagnant = nbTour % 2;
+            this.gagnant = nbTour+1 % 2;
         }
         if (isGameTied()) {
             System.out.println("Egalité");
-            this.gagnant = 0;
+            this.gagnant = -2;
         }
+
     }
 
     private boolean isGameTied(){
-        if(!isKingChecked(joueurs[(nbTour + 1)%2].getCouleur()) && getAllCoupFromOnePiece(getKing(joueurs[(nbTour + 1)%2].getCouleur())).size() == 0)
+
+        if(!isKingChecked(joueurs[nbTour%2].getCouleur()) && getAllCoupFromOnePiece(getKing(joueurs[nbTour%2].getCouleur())).size() == 0)
             return true;
+
         for(IPiece p : pieces)
             if(!p.craintEchec())
                 return false;
-            return true;
+
+        return true;
     }
 
     /**
@@ -227,6 +276,12 @@ public class Plateau {
         return echec;
     }
 
+    public String gagnantToString(){
+        if (this.gagnant == -2)
+            return "Egalité, aucun gagnant";
+        return "Le gagnant est " + joueurs[this.gagnant%2].getCouleur().toString();
+    }
+
     /**
      * Permet de récupérer l'échiquier avec ses pièces
      * @return L'échiquier sous forme d'une string
@@ -279,6 +334,10 @@ public class Plateau {
         ArrayList<PaireCoords> allCoups = getAllCoupPossible(couleur);
         if(allCoups.size() == 0)
             return null;
+
+        System.out.println(this);
+        System.out.println(allCoups.size());
+
         return allCoups.get(random.nextInt(allCoups.size()));
     }
 
@@ -306,11 +365,13 @@ public class Plateau {
         ArrayList<PaireCoords> tabCoords = new ArrayList<>();
         for (int i = MIN; i <= MAX; i++) {
             for (int j = MIN; j <= MAX; j++) {
-                if (piece.peutAllerEn(new Coords(i,j), this)) {
-                    nbTour++;
-                    if(!(simulateToCheckForEchec(new PaireCoords(new Coords(piece.getCoords()), new Coords(i,j)), piece)))
+                if (canCoordsBePlayed(new PaireCoords(piece.getCoords(), new Coords(i,j)))){
+                //if (piece.peutAllerEn(new Coords(i,j), this)) {
+                    System.out.println("Je peux me déplacer en " + i + j + "et je suis une " + piece);
+                    //nbTour++;
+                    //if(!simulateToCheckForEchec(new PaireCoords(new Coords(piece.getCoords()), new Coords(i,j)), piece))
                         tabCoords.add(new PaireCoords(new Coords(piece.getCoords()), new Coords(i, j)));
-                    nbTour--;
+                    //nbTour--;
                 }
             }
         }

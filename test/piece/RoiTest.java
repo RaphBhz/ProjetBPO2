@@ -17,7 +17,7 @@ class RoiTest {
     @Test
     void peutAllerEn() {
         Plateau pl = new Plateau(new Joueur(Couleur.BLANC), new Joueur(Couleur.NOIR));
-        IPiece roi = PieceFactory.createPiece(Couleur.BLANC, TypesPieces.ROI, new Coords(1,1));
+        IPiece roi = FabriquePiece.createPiece(Couleur.BLANC, TypesPieces.ROI, new Coords(1,1));
 
         if (roi == null)
             fail();
@@ -28,7 +28,7 @@ class RoiTest {
 
     @Test
     void craintEchec() {
-        IPiece roi = PieceFactory.createPiece(Couleur.BLANC, TypesPieces.ROI, new Coords(1,1));
+        IPiece roi = FabriquePiece.createPiece(Couleur.BLANC, TypesPieces.ROI, new Coords(1,1));
         if (roi == null)
             fail();
         assertTrue(roi.craintEchec());
@@ -36,8 +36,8 @@ class RoiTest {
 
     @Test
     void testToString() {
-        IPiece roi = PieceFactory.createPiece(Couleur.BLANC, TypesPieces.ROI, new Coords(1,1));
-        IPiece roi2 = PieceFactory.createPiece(Couleur.NOIR, TypesPieces.ROI, new Coords(2,2));
+        IPiece roi = FabriquePiece.createPiece(Couleur.BLANC, TypesPieces.ROI, new Coords(1,1));
+        IPiece roi2 = FabriquePiece.createPiece(Couleur.NOIR, TypesPieces.ROI, new Coords(2,2));
         if (roi == null || roi2 == null)
             fail();
         assertEquals(roi.toString(), "R");

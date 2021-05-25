@@ -33,5 +33,7 @@ public class App {
             //break;
         }
 
+        System.out.println(pl.gagnantToString());
+
     }
 }

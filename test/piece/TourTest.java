@@ -17,7 +17,7 @@ class TourTest {
     @Test
     void peutAllerEn() {
         Plateau pl = new Plateau(new Joueur(Couleur.BLANC), new Joueur(Couleur.NOIR));
-        IPiece tour = PieceFactory.createPiece(Couleur.BLANC, TypesPieces.TOUR, new Coords(1,1));
+        IPiece tour = FabriquePiece.createPiece(Couleur.BLANC, TypesPieces.TOUR, new Coords(1,1));
 
         if (tour == null)
             fail();
@@ -28,8 +28,8 @@ class TourTest {
 
     @Test
     void testToString() {
-        IPiece tour = PieceFactory.createPiece(Couleur.BLANC, TypesPieces.TOUR, new Coords(1,1));
-        IPiece tour2 = PieceFactory.createPiece(Couleur.NOIR, TypesPieces.TOUR, new Coords(2,2));
+        IPiece tour = FabriquePiece.createPiece(Couleur.BLANC, TypesPieces.TOUR, new Coords(1,1));
+        IPiece tour2 = FabriquePiece.createPiece(Couleur.NOIR, TypesPieces.TOUR, new Coords(2,2));
         if (tour == null || tour2 == null)
             fail();
         assertEquals(tour.toString(), "T");
