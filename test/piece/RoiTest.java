@@ -1,40 +1,48 @@
 package piece;
 
-import joueur.Joueur;
-import utilitaire.Coords;
+import echec.IPiece;
 import echiquier.Plateau;
+import joueur.Joueur;
 import org.junit.jupiter.api.Test;
+import utilitaire.Coords;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * @author LE GAL Florian
+ * @date 25/05/2021
+ */
 class RoiTest {
 
     @Test
     void peutAllerEn() {
+        Plateau pl = new Plateau(new Joueur(Couleur.BLANC), new Joueur(Couleur.NOIR));
+        IPiece roi = PieceFactory.createPiece(Couleur.BLANC, TypesPieces.ROI, new Coords(1,1));
+
+        if (roi == null)
+            fail();
+
+        assertTrue(roi.peutAllerEn(new Coords(1,2), pl));
+        assertFalse(roi.peutAllerEn(new Coords(3,1), pl));
     }
 
     @Test
     void craintEchec() {
-    }
-
-    @Test
-    void coupLegal() {
-    }
-
-    @Test
-    void menace() {
+        IPiece roi = PieceFactory.createPiece(Couleur.BLANC, TypesPieces.ROI, new Coords(1,1));
+        if (roi == null)
+            fail();
+        assertTrue(roi.craintEchec());
     }
 
     @Test
     void testToString() {
-    }
+        IPiece roi = PieceFactory.createPiece(Couleur.BLANC, TypesPieces.ROI, new Coords(1,1));
+        IPiece roi2 = PieceFactory.createPiece(Couleur.NOIR, TypesPieces.ROI, new Coords(2,2));
+        if (roi == null || roi2 == null)
+            fail();
+        assertEquals(roi.toString(), "R");
+        assertNotEquals(roi2.toString(), "R");
+        assertEquals(roi2.toString(), "r");
 
-    @Test
-    void canMove() {
-        Plateau pl = new Plateau(new Joueur(Couleur.BLANC), new Joueur(Couleur.NOIR));
-        Roi roi = new Roi(new Coords(5,5), Couleur.BLANC);
-        //assertTrue(roi.canMove(pl));
-        Tour tour1 = new Tour(new Coords(5,8), Couleur.BLANC);
-        Tour tour2 = new Tour(new Coords(5,7), Couleur.BLANC);
-        Tour tour3 = new Tour(new Coords(5,9), Couleur.BLANC);
-//        assertFalse(roi.canMove(pl)); // --- BUG
     }
 }

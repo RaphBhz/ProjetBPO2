@@ -62,4 +62,10 @@ public interface IPiece {
      * @return la chaîne de charactères d'une pièce
      */
     String toString();
+
+    /**
+     * Permet de savoir si une pièce est de la couleur noire
+     * @return true si la pièce est noire, false dans le cas contraire
+     */
+    boolean isBlack();
 }

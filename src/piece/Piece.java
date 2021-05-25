@@ -37,6 +37,7 @@ public abstract class Piece implements IPiece {
     @Override
     public Couleur getCouleur(){ return this.couleur; }
 
+    @Override
     public boolean isBlack(){return this.couleur == Couleur.NOIR;}
 
     @Override
